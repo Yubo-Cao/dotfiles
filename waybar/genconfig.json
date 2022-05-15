@@ -1,0 +1,7 @@
+{
+    "scheme_config": "colorscheme.json",
+    "waybar_config": "config.json",
+    "css_config": "style_config.css",
+    "css_output": "style.css",
+    "scheme": "grey"
+}

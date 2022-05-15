@@ -1,0 +1,49 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Noto Sans", "Symbols Nerd Font";
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#waybar>.horizontal>.horizontal:nth-child(1) {
+    margin-right: 4px;
+}
+
+#workspaces button {
+    margin: 4px 4px;
+    background-color: rgba(189, 189, 189, 0.5);
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+}
+
+#mode {
+    border-radius: 5px;
+}
+
+#temperature,
+#tray,
+#pulseaudio,
+#network,
+#memory,
+#cpu,
+#backlight,
+#battery,
+#clock {
+    padding: 4px 8px;
+    background-color: rgba(189, 189, 189, 0.5);
+    margin: 4px 4px;
+    border-radius: 5px;
+}

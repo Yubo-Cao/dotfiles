@@ -5,3 +5,4 @@
 [submodule "dotbot-yay"]
 	path = dotbot-yay
 	url = https://github.com/oxson/dotbot-yay
+	ignore = *.pyc

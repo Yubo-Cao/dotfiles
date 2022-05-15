@@ -1,8 +1,47 @@
-- clean: ['~']
-
+- defaults:
+    link:
+        create: true
+- clean:
+    ~/:
+      force: true
+    ~/.config:
+      force: true
+      recursive: true
 - link:
-    ~/.bash_profile: bash_profile
-    ~/.bashrc: bashrc
-    ~/.bash_logout: bash_logout
-
+    ~/.bash_profile: bash/bash_profile
+    ~/.bashrc: bash/bashrc
+    ~/.bash_logout: bash/bash_logout
+    ~/.config/kitty/kitty.conf: kitty/kitty.conf
+    ~/.config/sway/:
+      glob: true
+      path: sway/*
+    ~/.config/waybar/config:
+      path: waybar/config.json
+    ~/.config/waybar/style.css:
+      path: waybar/style.css
+    ~/.local/share/rofi/themes/nord.rasi:
+      path: rofi/nord.rasi
+- shell:
+    - echo '' | sudo tee /etc/environment
+    - command: cat ./fcitx5/env | sudo tee -a /etc/environment
+      quiet: true
+    - command: cat ./theme/qt/env | sudo tee -a /etc/environment
+      quiet: true
+- yay:
+    - visual-studio-code-bin
+    - openjdk-src
+    - openjdk-doc
+    - jdk-openjdk
+    - ttf-nerd-fonts-symbols 
+    - anki-bin
+    - xmind
+    - typora-free
+    - intellij-idea-ultimate-edition
+    - texlive-bin
+    - texlive-core
+    - texlive-latexextra
+    - txelive-langchinese
+    - texlive-bibtexextra 
+    - tllocalmgr
+    - 
 

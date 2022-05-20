@@ -21,12 +21,13 @@
       path: waybar/style.css
     ~/.local/share/rofi/themes/nord.rasi:
       path: rofi/nord.rasi
+    ~/.config/electron-flags.conf:
+      path: ./wayland/electron-flags.conf
+    ~/.xinitrc:
+      path: xinitrc
 - shell:
-    - echo '' | sudo tee /etc/environment
-    - command: cat ./fcitx5/env | sudo tee -a /etc/environment
-      quiet: true
-    - command: cat ./theme/qt/env | sudo tee -a /etc/environment
-      quiet: true
+    - command: set path '/etc/environment'; sudo rm -f $path; for env in $(fd '^env$');echo -e "\n# From $env" | sudo tee -a $path && cat $env | sudo tee -a $path;end; 
+    - command: sudo cp './virt/autostart/windows-virt.service' '/usr/lib/systemd/system/'
 - yay:
     - visual-studio-code-bin
     - openjdk-src
@@ -40,8 +41,7 @@
     - texlive-bin
     - texlive-core
     - texlive-latexextra
-    - txelive-langchinese
+    - texlive-langchinese
     - texlive-bibtexextra 
-    - tllocalmgr
-    - 
+    - tllocalmgr-git
 

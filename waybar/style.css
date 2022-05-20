@@ -13,9 +13,53 @@ window#waybar.hidden {
     opacity: 0.2;
 }
 
-#waybar>.horizontal>.horizontal:nth-child(1) {
-    margin-right: 4px;
+
+/*-----module groups----*/
+
+.modules-right {
+    background-color: rgba(245, 245, 245, 0.85);
+    margin: 0 16px 0 0;
 }
+
+.modules-center {
+    background-color: rgba(245, 245, 245, 0.85);
+    margin: 0 0 0 0;
+}
+
+.modules-left {
+    margin: 0 0 0 16px;
+    background-color: rgba(245, 245, 245, 0.85);
+}
+
+
+/*-----Indicators----*/
+
+#idle_inhibitor.activated {
+    color: #2dcc36;
+}
+
+#pulseaudio.muted {
+    color: #cc3436;
+}
+
+#battery.charging {
+    color: #2dcc36;
+}
+
+#battery.warning:not(.charging) {
+    color: #e6e600;
+}
+
+#battery.critical:not(.charging) {
+    color: #cc3436;
+}
+
+#temperature.critical {
+    color: #cc3436;
+}
+
+
+/*----Indivial Modules------*/
 
 #workspaces button {
     margin: 4px 4px;
@@ -46,4 +90,44 @@ window#waybar.hidden {
     background-color: rgba(189, 189, 189, 0.5);
     margin: 4px 4px;
     border-radius: 5px;
+}
+
+#tray {
+    background-color: rgba(66, 66, 66, 0.5);
+}
+
+#pulseaudio {
+    background-color: rgba(250, 250, 250, 0.5);
+}
+
+#backlight {
+    background-color: rgba(245, 245, 245, 0.5);
+}
+
+#network {
+    background-color: rgba(238, 238, 238, 0.5);
+}
+
+#memory {
+    background-color: rgba(224, 224, 224, 0.5);
+}
+
+#cpu {
+    background-color: rgba(189, 189, 189, 0.5);
+}
+
+#temperature {
+    background-color: rgba(158, 158, 158, 0.5);
+}
+
+#battery {
+    background-color: rgba(117, 117, 117, 0.5);
+}
+
+#clock {
+    background-color: rgba(97, 97, 97, 0.5);
+}
+
+#tray {
+    background-color: rgba(66, 66, 66, 0.5);
 }

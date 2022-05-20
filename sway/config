@@ -207,7 +207,7 @@ gaps inner 5
 
 # Rofi
 
-bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort | wl-copy
 
 # Screenshot
 # Pure Screen Shot

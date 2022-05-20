@@ -17,8 +17,7 @@
         "cpu",
         "temperature",
         "battery",
-        "clock#date",
-        "clock#time",
+        "clock",
         "tray"
     ],
     "battery": {
@@ -38,15 +37,12 @@
         ],
         "tooltip": true
     },
-    "clock#time": {
-        "interval": 1,
-        "format": "{:%H:%M:%S}",
-        "tooltip": false
-    },
-    "clock#date": {
-        "interval": 10,
-        "format": "  {:%e %b %Y}",
-        "tooltip-format": "{:%e %B %Y}"
+    "clock": {
+        "today-format": "<span color='#ff6699'><b><u>{}</u></b></span>",
+        "calendar-weeks-pos": "right",
+        "format-calendar": "<span color='#ecc6d9'><b>{}</b></span>",
+        "format-calendar-weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "format-calendar-weekdays": "<span color='#ffcc66'><b>{}</b></span>"
     },
     "cpu": {
         "interval": 5,

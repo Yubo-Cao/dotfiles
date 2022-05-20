@@ -1,0 +1,33 @@
+ERROR:root:FileNotFoundError(2, 'No such file or directory')
+错误：获得域 'windows' 失败
+
+ERROR:root:FileNotFoundError(2, 'No such file or directory')
+错误：域已经活跃
+
+错误：域已经活跃
+
+错误：Failed to start domain 'windows'
+错误：内部错误：process exited while connecting to monitor: qemu-system-x86_64: -set device.hostdev0.ramfb=on: there is no device "hostdev0" defined
+
+ERROR:root:PermissionError(13, 'Permission denied')
+错误：获得域 'windows' 失败
+
+ERROR:root:FileExistsError(17, 'File exists')
+错误：Failed to start domain 'windows'
+错误：内部错误：process exited while connecting to monitor: qemu-system-x86_64: -set device.hostdev0.ramfb=on: there is no device "hostdev0" defined
+
+错误：Failed to start domain 'windows'
+错误：内部错误：process exited while connecting to monitor: qemu-system-x86_64: -set device.hostdev0.ramfb=on: there is no device "hostdev0" defined
+
+错误：Failed to start domain 'windows'
+错误：内部错误：process exited while connecting to monitor: qemu-system-x86_64: -set device.hostdev0.ramfb=on: there is no device "hostdev0" defined
+
+错误：Failed to start domain 'windows'
+错误：内部错误：process exited while connecting to monitor
+
+ERROR:root:FileExistsError(17, 'File exists')
+Domain 'windows' started
+
+ERROR:root:FileExistsError(17, 'File exists')
+错误：域已经活跃
+

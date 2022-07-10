@@ -23,38 +23,47 @@
       path: rofi/nord.rasi
     ~/.config/electron-flags.conf:
       path: ./wayland/electron-flags.conf
-    ~/.xinitrc:
-      path: xinitrc
     ~/.config/zathura/zathurac:
       path: /home/yubo/config/zathura/zathurarc
     ~/indentconfig.yaml:
       path: /home/yubo/config/latex/mysettings.yaml
     ~/.zshrc:
       path: /home/yubo/config/zsh/zshrc
+    ~/.p10k.zsh:
+      path: /home/yubo/config/zsh/p10k.zsh
+    ~/.config/rofi/config.rasi:
+      path: /home/yubo/config/rofi/config.rasi
 - shell:
     - command: dst='/etc/environment'; sudo rm -f $dst; for env in $(fd '^env$'); do cat <(echo -e "\n# From $env") $env | sudo tee -a $dst; done
+      description: "Environment File Generator"
     - command: sudo cp './virt/autostart/windows-virt.service' '/usr/lib/systemd/system/'
-    - command: for pkg in $(fd pkgs.yaml); do sudo python installer.py $pkg; done;
-# Necesssary basic softwares
-- yay:
-    - visual-studio-code-bin
-    - openjdk-src
-    - openjdk-doc
-    - jdk-openjdk
-    - xmind
-    - jetbrains-toolbox
-    - fd
-    - ripgrep
-    - ark
-    - unrar
-    - unarchiver
-    - lzop
-    - lrzip
-    - dolphin
-    - gwenview
-    - git
-    - ntfs-3g
+      description: "Windows Virtualization Service"
+    - command: for pkg in $(fd pkgs.yaml); do sudo python ./plugin/package.py $pkg; done;
+      stdout: true
+      description: "Install pkgs.yaml in subfolders"
+- package:
+    - ide:
+        - visual-studio-code-bin
+        - jetbrains-toolbox
+    - java:
+        - openjdk-src
+        - openjdk-doc
+        - jdk-openjdk
+    - rust-cli:
+        - fd
+        - ripgrep
+    - decompresser:
+        - ark
+        - unrar
+        - unarchiver
+        - lzop
+        - lrzip
+    - notebook:
+        - xmind
+        - typora-free
+    - common:
+        - dolphin # File Explorer
+        - gwenview # Image Viewer
+        - ntfs-3g
     - discord
-    - oh-my-zsh-git
-    - rofi
-    - typora-free
+    - git

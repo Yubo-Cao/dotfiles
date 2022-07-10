@@ -24,15 +24,27 @@
     ~/.config/electron-flags.conf:
       path: ./wayland/electron-flags.conf
     ~/.config/zathura/zathurac:
-      path: /home/yubo/config/zathura/zathurarc
+      path: zathura/zathurarc
     ~/indentconfig.yaml:
-      path: /home/yubo/config/latex/mysettings.yaml
+      path: latex/indentconfig.yaml
     ~/.zshrc:
-      path: /home/yubo/config/zsh/zshrc
+      path: zsh/zshrc
     ~/.p10k.zsh:
-      path: /home/yubo/config/zsh/p10k.zsh
+      path: zsh/p10k.zsh
     ~/.config/rofi/config.rasi:
-      path: /home/yubo/config/rofi/config.rasi
+      path: rofi/config.rasi
+    ~/.config/gtk-3.0/settings.ini:
+      path: theme/gtk/settings.ini
+    ~/.gtkrc-2.0:
+      path: theme/gtk/gtkrc-2.0
+    ~/.icons/default/index.theme:
+      path: theme/gtk/index.theme
+    ~/.config/xsettingsd/xsettingsd.conf:
+      path: theme/gtk/xsettingsd.conf
+    ~/.config/fcitx5:
+      glob: true
+      path: fcitx5/*
+      exclude: env
 - shell:
     - command: dst='/etc/environment'; sudo rm -f $dst; for env in $(fd '^env$'); do cat <(echo -e "\n# From $env") $env | sudo tee -a $dst; done
       description: "Environment File Generator"
@@ -65,5 +77,10 @@
         - dolphin # File Explorer
         - gwenview # Image Viewer
         - ntfs-3g
+    - devel:
+        - tldr
+        - git
+    - backup:
+        - timeshift
+        - grub-btrfs
     - discord
-    - git

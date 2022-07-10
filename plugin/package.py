@@ -5,17 +5,8 @@ from email.policy import default
 from itertools import chain
 import sys
 from collections.abc import Mapping, Sequence
-from functools import cache, lru_cache, partial
-from logging import (
-    DEBUG,
-    INFO,
-    WARNING,
-    ERROR,
-    FileHandler,
-    Logger,
-    Formatter,
-    StreamHandler,
-)
+from functools import lru_cache, partial
+from logging import DEBUG, INFO, WARNING, ERROR, Logger, Formatter, StreamHandler
 import shutil
 from subprocess import PIPE, CalledProcessError, Popen
 from collections.abc import Sequence
@@ -38,10 +29,6 @@ class ColoredFormatter(Formatter):
 
 def get_logger():
     logger = Logger("package manager", INFO)
-    fh = FileHandler("package.log")
-    fh.setFormatter(Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s"))
-    logger.addHandler(fh)
-
     sh = StreamHandler(sys.stdout)
     sh.setFormatter(ColoredFormatter("%(levelname)s %(message)s"))
     logger.addHandler(sh)
@@ -64,6 +51,7 @@ class Package:
         self.exe = Package.get_executable(exe)
 
     @classmethod
+    @lru_cache(maxsize=2)
     def get_executable(cls, exe):
         try:
             return shutil.which(exe)
@@ -126,7 +114,11 @@ class Package:
                 )
         except CalledProcessError as e:
             logger.error(f"Failed to {msg} for {self.name!r} [{e.returncode}]")
-            onfail(SimpleNamespace(returncode=process.returncode,cmd = cmd, stdout=stdout, stderr=stderr))
+            onfail(
+                SimpleNamespace(
+                    returncode=process.returncode, cmd=cmd, stdout=stdout, stderr=stderr
+                )
+            )
         return process
 
     def __repr__(self):
@@ -142,15 +134,16 @@ def process(args, config: dict[str, str]):
     idx = 0
     pk = partial(Package, exe=args.backend)
 
-    def handle_one(pkg) -> list[Package]:
+    def handle_one(pkg, indent=False) -> list[Package]:
+        indent = ("   " + Style.DIM) if indent else ""
         if (pkg := pk(pkg)).exists:
             if pkg.installed:
-                logger.info(f"{pkg} is already installed")
+                logger.info(indent + f"{pkg} is already installed" + Style.NORMAL)
                 return []
             else:
                 return [pkg]
         else:
-            logger.info(f"{pkg} does not exists in repository")
+            logger.warn(indent + f"{pkg} does not exists in repository" + Style.NORMAL)
             return []
 
     while idx < len(stack):
@@ -165,8 +158,11 @@ def process(args, config: dict[str, str]):
                     and (k := next(iter(e.keys()), None))
                     and all(isinstance(e, str) for e in e[k])
                 ):
+                    logger.info(f"Processing {k}")
                     with ThreadPoolExecutor(max_workers=len(e[k])) as executor:
-                        pkgs[k] = list(chain(*executor.map(handle_one, e[k])))
+                        pkgs[k] = list(
+                            chain(*executor.map(partial(handle_one, indent=True), e[k]))
+                        )
                 else:
                     stack.extend(e.values())
             case Sequence():
@@ -177,7 +173,7 @@ def process(args, config: dict[str, str]):
         if group_pkgs:
             logger.info(f"Installing {group}")
             for pkg in group_pkgs:
-                logger.info(f"    Installing {pkg}")
+                logger.info(Style.DIM + f"    Installing {pkg}" + Style.NORMAL)
                 pkg.installed = True
 
 

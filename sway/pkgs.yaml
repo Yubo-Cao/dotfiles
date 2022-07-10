@@ -1,0 +1,9 @@
+- sway:
+    - sway
+    - swaybg
+    - swayidle
+    - swayidle
+- bar:
+    - waybar
+- runner:
+    - rofi

@@ -18,7 +18,7 @@ set $term kitty
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu  rofi -show run
+set $menu /home/yubo/config/rofi/helper.sh
 
 ### Output configuration
 #
@@ -62,7 +62,7 @@ input "2321:21128:HTIX5288:00_0911:5288_Touchpad" {
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec $menu
+    bindsym $mod+d exec $menu -show run
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -206,15 +206,14 @@ smart_gaps on
 gaps inner 5
 
 # Rofi
-
-bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort | wl-copy
+bindsym $mod+c exec $menu -show calc -modi calc -no-show-match -no-sort | wl-copy
 
 # Screenshot
 # Pure Screen Shot
 # bindsym ctrl+F1 exec grim -g "$(slurp)" - | wl-copy
 # Scan QR Code
 bindsym ctrl+F2 exec grim -g "$(slurp)" - | zbarimg -q --noxml - | perl -pe 's/^.*?://g' | wl-copy
-bindsym $mod+z exec rofi -show drun
+bindsym $mod+z exec $menu -show drun
 # OCR
 
 # flameshot
@@ -228,7 +227,8 @@ bindsym ctrl+F1 exec flameshot gui
 set $laptop "Chimei Innolux Corporation 0x14D4 0x00000000"
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-
+output eDP-1 pos 0 1080
+output HDMI-A-2 pos 0 0
 
 # GeoClue for Gammastep
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
@@ -240,5 +240,14 @@ exec $dropdown_term
 for_window [title="$title"] move scratchpad, resize set 1920 400, move absolute 0 0  
 bindsym F12 [title="$title"] scratchpad show, move absolute 0 0
 
+# Edge
+bindsym $mod+p exec microsoft-edge-stable
+
 # Redshift
 exec gammastep
+
+# Xwayland
+for_window [shell="xwayland"] title_format "[X] %title"
+
+# Wines
+for_window [class=".*photoshop\.exe.*"] fullscreen enable

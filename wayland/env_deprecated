@@ -12,3 +12,5 @@ SDL_VIDEODRIVER=wayland
 # Winit run default by wayland. Ensure
 WINIT_UNIX_BACKEND=wayland
 # Electron does not have wayland pam_env. See electron-flags.conf
+# Firefox
+MOZ_ENABLE_WAYLAND=1

@@ -1,0 +1,7 @@
+- texlive:
+    - texlive-bin
+    - texlive-core
+    - texlive-latexextra
+    - texlive-langchinese
+    - texlive-bibtexextra
+    - tllocalmgr-git

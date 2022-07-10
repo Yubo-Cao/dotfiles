@@ -1,6 +1,6 @@
 - defaults:
     link:
-        create: true
+      create: true
 - clean:
     ~/:
       force: true
@@ -25,23 +25,36 @@
       path: ./wayland/electron-flags.conf
     ~/.xinitrc:
       path: xinitrc
+    ~/.config/zathura/zathurac:
+      path: /home/yubo/config/zathura/zathurarc
+    ~/indentconfig.yaml:
+      path: /home/yubo/config/latex/mysettings.yaml
+    ~/.zshrc:
+      path: /home/yubo/config/zsh/zshrc
 - shell:
-    - command: set path '/etc/environment'; sudo rm -f $path; for env in $(fd '^env$');echo -e "\n# From $env" | sudo tee -a $path && cat $env | sudo tee -a $path;end; 
+    - command: dst='/etc/environment'; sudo rm -f $dst; for env in $(fd '^env$'); do cat <(echo -e "\n# From $env") $env | sudo tee -a $dst; done
     - command: sudo cp './virt/autostart/windows-virt.service' '/usr/lib/systemd/system/'
+    - command: for pkg in $(fd pkgs.yaml); do sudo python installer.py $pkg; done;
+# Necesssary basic softwares
 - yay:
     - visual-studio-code-bin
     - openjdk-src
     - openjdk-doc
     - jdk-openjdk
-    - ttf-nerd-fonts-symbols 
-    - anki-bin
     - xmind
+    - jetbrains-toolbox
+    - fd
+    - ripgrep
+    - ark
+    - unrar
+    - unarchiver
+    - lzop
+    - lrzip
+    - dolphin
+    - gwenview
+    - git
+    - ntfs-3g
+    - discord
+    - oh-my-zsh-git
+    - rofi
     - typora-free
-    - intellij-idea-ultimate-edition
-    - texlive-bin
-    - texlive-core
-    - texlive-latexextra
-    - texlive-langchinese
-    - texlive-bibtexextra 
-    - tllocalmgr-git
-

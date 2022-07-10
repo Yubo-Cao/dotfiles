@@ -1,0 +1,16 @@
+- noto-family:
+    - noto-fonts-cjk
+    - noto-fonts
+    - noto-fonts-emoji
+    - noto-fonts-extra
+- source-hans:
+    - adobe-source-han-sans-cn-fonts
+    - adobe-source-han-serif-cn-fonts
+    - adobe-source-code-pro-fonts
+- fira-code:
+    - ttf-fira-code
+- nerd-fonts:
+    - ttf-nerd-fonts-symbols
+    - ttf-nerd-fonts-symbols-mono
+- sarasa-fonts:
+    - ttf-sarasa-gothic

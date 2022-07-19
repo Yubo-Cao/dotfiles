@@ -8,48 +8,56 @@
       force: true
       recursive: true
 - link:
-    ~/.bash_profile: bash/bash_profile
-    ~/.bashrc: bash/bashrc
-    ~/.bash_logout: bash/bash_logout
-    ~/.config/kitty/kitty.conf: kitty/kitty.conf
+    ~/.bash_profile: shell/bash/bash_profile
+    ~/.bashrc: shell/bash/bashrc
+    ~/.bash_logout: shell/bash/bash_logout
+    ~/.config/kitty/kitty.conf: shell/kitty/kitty.conf
     ~/.config/sway/:
       glob: true
-      path: sway/*
+      path: desktop/wayland/sway/*
     ~/.config/waybar/config:
-      path: waybar/config.json
+      path: desktop/wayland/waybar/config.json
     ~/.config/waybar/style.css:
-      path: waybar/style.css
+      path: desktop/wayland/waybar/style.css
     ~/.local/share/rofi/themes/nord.rasi:
-      path: rofi/nord.rasi
-    ~/.config/electron-flags.conf:
-      path: ./wayland/electron-flags.conf
-    ~/.config/zathura/zathurac:
-      path: zathura/zathurarc
-    ~/indentconfig.yaml:
-      path: latex/indentconfig.yaml
-    ~/.zshrc:
-      path: zsh/zshrc
-    ~/.p10k.zsh:
-      path: zsh/p10k.zsh
+      path: desktop/rofi/nord.rasi
     ~/.config/rofi/config.rasi:
-      path: rofi/config.rasi
+      path: desktop/rofi/config.rasi
+      # ~/.config/electron-flags.conf:
+      # path: desktop/wayland/electron-flags.conf
+    ~/.config/zathura/zathurac:
+      path: apps/gui/zathura/zathurarc
+    ~/indentconfig.yaml:
+      path: apps/cli/latex/indentconfig.yaml
+    ~/.zshrc:
+      path: shell/zsh/zshrc
+    ~/.p10k.zsh:
+      path: shell/zsh/p10k.zsh
     ~/.config/gtk-3.0/settings.ini:
-      path: theme/gtk/settings.ini
+      path: desktop/theme/gtk/settings.ini
     ~/.gtkrc-2.0:
-      path: theme/gtk/gtkrc-2.0
+      path: desktop/theme/gtk/gtkrc-2.0
     ~/.icons/default/index.theme:
-      path: theme/gtk/index.theme
+      path: desktop/theme/gtk/index.theme
     ~/.config/xsettingsd/xsettingsd.conf:
-      path: theme/gtk/xsettingsd.conf
+      path: desktop/theme/gtk/xsettingsd.conf
     ~/.config/fcitx5:
       glob: true
-      path: fcitx5/*
+      path: desktop/fcitx5/*
       exclude: env
+    ~/.vim/autoload/plug.vim:
+      path: shell/vim/plug.vim
+    ~/.vimrc:
+      path: shell/vim/vimrc
+    ~/.xinitrc:
+      path: desktop/xorg/i3/xinitrc
+    ~/.config/rclone/rclone.conf:
+      path: apps/cli/rclone/rclone.conf
+    ~/.config/Typora/themes/fluent.css:
+      path: apps/gui/typora/fluent.css
 - shell:
-    - command: dst='/etc/environment'; sudo rm -f $dst; for env in $(fd '^env$'); do cat <(echo -e "\n# From $env") $env | sudo tee -a $dst; done
+    - command: zsh env; 
       description: "Environment File Generator"
-    - command: sudo cp './virt/autostart/windows-virt.service' '/usr/lib/systemd/system/'
-      description: "Windows Virtualization Service"
     - command: for pkg in $(fd pkgs.yaml); do sudo python ./plugin/package.py $pkg; done;
       stdout: true
       description: "Install pkgs.yaml in subfolders"
@@ -81,6 +89,18 @@
         - tldr
         - git
     - backup:
-        - timeshift
+        - snapper
         - grub-btrfs
+    - obs-studio
+    - xdg-desktop-portal-wlr
+    - screenkey
+    - woeusb-ng
+    - ffmpeg
+    - inkscape
+    - krita
+    - gimp
+    - musescore
+    - blender
     - discord
+    - rofi
+    - network-manager-applet

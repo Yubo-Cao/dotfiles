@@ -29,9 +29,9 @@ output HDMI-A-1 resolution 1920x1080 position 2048,0
 ### Idle
 
 exec swayidle -w \
-         timeout 300 'swaylock -f -c 000000' \
-         timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-         before-sleep 'swaylock -f -c 000000'
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 000000'
 exec fcitx5
 
 
@@ -78,9 +78,17 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t \
-	warning -m 'Exit sway?' \
-	-B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t warning \
+    --message 'Exit Sway' \
+    --button-no-terminal 'Yes, exit' 'swaymsg exit' \
+    --background 'f8fafc' \
+    --border 'f1f5f9' \
+    --button-background '#e2e8f0' \
+    --button-border '#94a3b8' \
+    --message-padding 8 \
+    --button-padding 8 \
+    --dismiss-button '×' \
+    --font 'Inter'
 
 ## Moving around
 

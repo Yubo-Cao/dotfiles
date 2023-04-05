@@ -48,6 +48,7 @@ input "1267:12815:VEN_04F3:00_04F3:320F_Touchpad" {
 }
 
 ### Basic
+# Gap
 gaps outer 2
 gaps inner 6
 default_border pixel 2
@@ -57,6 +58,9 @@ for_window [app_id="microsoft-edge-dev"] border csd
 client.focused		    #cbd5e1 #cbd5e1 #e2e8f0
 client.focused_inactive #e2e8f0 #e2e8f0 #f8fafc
 client.unfocused	    #f8fafc #f8fafc #f1f5f9
+
+# Redshift
+exec gammastep -t 5700:3600 -l 33.956215:-83.987961
 
 ### Key bindings
 

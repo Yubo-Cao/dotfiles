@@ -15,6 +15,7 @@
     border-radius: 0;
     font-family: "Inter", "Symbols Nerd Font";
     font-size: 12px;
+    color: @slate-600;
 }
 
 window#waybar {

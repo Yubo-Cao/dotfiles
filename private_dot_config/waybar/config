@@ -127,8 +127,8 @@
             "",
             ""
         ],
-        "on-scroll-up": "light -A 2",
-        "on-scroll-down": "light -U 2"
+        "on-scroll-up": "sudo light -A 2",
+        "on-scroll-down": "sudo light -U 2"
     },
     "pulseaudio": {
         "format": "{volume}% {icon} {format_source}",

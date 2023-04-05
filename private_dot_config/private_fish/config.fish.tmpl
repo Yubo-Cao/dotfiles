@@ -1,12 +1,14 @@
 function set_environment
+    # Wayland
     set -Ux GTK_IM_MODULE fcitx
     set -Ux QT_IM_MODULE fcitx
     set -Ux XMODIFIERS @im=fcitx
     set -Ux SDL_IM_MODULE fcitx
     # kitty
     set -Ux GLFW_IM_MODULE ibus
-	
+    
     set -Ux EDITOR nvim
+    set GITHUB_PAT {{ .github_pat }}
 end
 
 if status is-interactive

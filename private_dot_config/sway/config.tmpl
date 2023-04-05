@@ -18,7 +18,7 @@ set $menu wofi --show drun --conf {{ .chezmoi.homeDir }}/.config/wofi/config | x
 ### Output
 
 # Wallpaper
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+output * bg {{ .chezmoi.homeDir }}/.config/sway/wallpaper.jpg fill
 
 # 1.5 scaling
 output eDP-1 resolution 3072x1920 position 0,0 scale 1.5
@@ -48,8 +48,8 @@ input "1267:12815:VEN_04F3:00_04F3:320F_Touchpad" {
 }
 
 ### Basic
-gaps outer 4
-gaps inner 4
+gaps outer 2
+gaps inner 6
 default_border pixel 2
 for_window [app_id="microsoft-edge-dev"] border csd
 

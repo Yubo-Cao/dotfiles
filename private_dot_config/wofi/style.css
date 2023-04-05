@@ -51,7 +51,14 @@ window {
 	font-weight: normal;
 }
 
-expander {
+expander arrow {
 	color: #475569;
-	background-color: #334155;
+}
+
+expander:checked arrow {
+	color: #334155;
+}
+
+expander list .entry {
+	background-color: #f1f5f9;
 }

@@ -1,0 +1,17 @@
+# Use Wayland
+QT_QPA_PLATFORM         DEFAULT=wayland
+CLUTTER_BACKEND         DEFAULT=wayland
+SDL_VIDEODRIVER         DEFAULT=wayland
+XDG_SESSION_TYPE        DEFAULT=wayland
+XDG_CURRENT_DESKTOP     DEFAULT=sway
+
+# Qt Theme
+QT_QPA_PLATFORMTHEME    DEFAULT=qt5ct
+
+# fcitx5
+GLFW_IM_MODULE          DEFAULT=ibus
+GTK_IM_MODULE           DEFAULT=fcitx
+INPUT_METHOD            DEFAULT=fcitx
+XMODIFIERS              DEFAULT=@im=fcitx
+IMSETTINGS_MODULE       DEFAULT=fcitx
+QT_IM_MODULE            DEFAULT=fcitx

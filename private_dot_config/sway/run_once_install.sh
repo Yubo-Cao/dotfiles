@@ -2,7 +2,10 @@
 source "$CHEZMOI_SOURCE_DIR/common.sh"
 
 install "Display fonts for Sway" \
-    noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra
+    noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
+    ttf-firacode-nerd \
+    inter-font \
+    ttf-material-design-icons-webfont
 
 install "Pipewire Audio Server" \
     pipewire wireplumber pipewire-audio pipewire-jack pipewire-alsa pipewire-pulse

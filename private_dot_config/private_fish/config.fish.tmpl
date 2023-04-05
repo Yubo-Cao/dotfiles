@@ -1,18 +1,33 @@
 function set_environment
-    # Wayland
+    # Fcitx
     set -Ux GTK_IM_MODULE fcitx
     set -Ux QT_IM_MODULE fcitx
     set -Ux XMODIFIERS @im=fcitx
     set -Ux SDL_IM_MODULE fcitx
-    # kitty
     set -Ux GLFW_IM_MODULE ibus
-    
+
+    # Wayland
+    set -Ux MOZ_ENABLE_WAYLAND 1
+    set -Ux MOZ_WEBRENDER 1
+    set -Ux QT_QPA_PLATFORM wayland
+    set -Ux CLUTTER_BACKEND wayland
+    set -Ux SDL_VIDEODRIVER wayland
+    set -Ux XDG_SESSION_TYPE wayland
+    set -Ux XDG_CURRENT_DESKTOP sway
+
+    # Qt theme
+    set -Ux QT_QPA_PLATFORMTHEME qt5ct
+
+    # Neovim
     set -Ux EDITOR nvim
-    set GITHUB_PAT {{ .github_pat }}
+
+    # Github
+    set -Ux GITHUB_PAT {{ .github_pat }}
 end
+
+set_environment
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set_environment

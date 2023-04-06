@@ -26,11 +26,11 @@ window_padding_width     8
 
 # Tab Bar  
 tab_bar_edge             top
-active_tab_foreground    {{.colors.text.focus}}
-active_tab_background    {{.colors.background.focus}}
+active_tab_foreground    {{.colors.text.default}}
+active_tab_background    {{.colors.primary_200}}
 active_tab_font_style    normal
-inactive_tab_foreground  #d8dee9
-inactive_tab_background  #4c566a
+inactive_tab_foreground  {{.colors.text.default}}
+inactive_tab_background  {{.colors.background.default}}
 
 # Cursor
 cursor                   {{.colors.text.default}}
@@ -39,8 +39,9 @@ cursor_blink_interval    0
 
 # Colors
 background               {{.colors.background.default}}
-background_opacity       0.95
+background_opacity       1.0
 foreground               {{.colors.text.default}}
+
 selection_background     #d6d6d6
 color0                   #000000
 color8                   #000000

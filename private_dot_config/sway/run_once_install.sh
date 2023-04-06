@@ -32,4 +32,5 @@ install "Sway utilies" \
     grim slurp mako \
     wl-clipboard \
     xdg-utils gnome-keyring xorg-xwayland \
-    autotiling-rs
+    autotiling-rs \
+    polkit-dump-agent xorg-xhost

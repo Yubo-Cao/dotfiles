@@ -62,6 +62,11 @@ client.unfocused	    #f8fafc #f8fafc #f1f5f9
 # Redshift
 exec gammastep -t 5700:3600 -l 33.956215:-83.987961
 
+# Dbus / Flameshot
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 ### Key bindings
 
 ## Basic

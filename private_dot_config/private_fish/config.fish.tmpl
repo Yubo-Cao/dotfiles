@@ -12,8 +12,10 @@ function set_environment
     set -Ux QT_QPA_PLATFORM wayland
     set -Ux CLUTTER_BACKEND wayland
     set -Ux SDL_VIDEODRIVER wayland
+    set -Ux _JAVA_AWT_WM_NONREPARENTING 1
     set -Ux XDG_SESSION_TYPE wayland
     set -Ux XDG_CURRENT_DESKTOP sway
+    set -Ux XDG_SESSION_DESKTOP sway
 
     # Qt theme
     set -Ux QT_QPA_PLATFORMTHEME qt5ct
@@ -23,6 +25,10 @@ function set_environment
 
     # Github
     set -Ux GITHUB_PAT {{ .github_pat }}
+end
+
+function cz
+    chezmoi $argv
 end
 
 set_environment

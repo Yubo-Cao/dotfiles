@@ -16,8 +16,8 @@ info() {
 # progress bar
 progress_bar() {
   local percentage=$1
-  local message=$2
-  local bar_type=$3
+  local message=${2:-""}
+  local bar_type=${3:-""}
 
   local width=$(($(tput cols) / 2))
   width=$((width > 80 ? width : 80))
@@ -85,6 +85,7 @@ install() {
     ((progress++))
     local percentage=$((progress * 100 / total_packages))
     progress_bar "$percentage" "$package"
+    # check if installed
     if yay -S --noconfirm --needed "$package" >/dev/null 2>&1; then
       progress_bar "$percentage" "$package" "info"
       sleep 0.05

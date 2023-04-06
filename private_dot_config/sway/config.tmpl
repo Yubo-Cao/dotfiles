@@ -62,10 +62,11 @@ client.unfocused         {{.colors.slate_100}}  {{.colors.slate_100}}  {{.colors
 # Redshift
 exec gammastep -t 5700:3600 -l 33.956215:-83.987961
 
-# Dbus / Flameshot
+# Dbus / Flameshot / GTK
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # Window
 for_window [window_role = "pop-up"] floating enable

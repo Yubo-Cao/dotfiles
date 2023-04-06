@@ -13,57 +13,60 @@ info() {
   echo -e "\e[32m[Info] $1\e[0m"
 }
 
-
-# bootstrap aur
-bootstrap_aur() {
-  sudo pacman -S --needed --noconfirm base-devel git > /dev/null 2>&1 \
-      && info "AUR bootsrapped successfully" \
-      || error "Failed to bootsrap aur"
-}
-
 # progress bar
 progress_bar() {
   local percentage=$1
   local message=$2
   local bar_type=$3
 
-  local width=$(( $(tput cols) / 2 ))
-  width=$(( width > 80 ? width : 80 ))
-  width=$(( width - ${#message}))
-  if [[ -n "$message" ]]; then width=$(( width - 3 )); fi
-  (( width = width < 0 ? 0 : width ))
+  local width=$(($(tput cols) / 2))
+  width=$((width > 80 ? width : 80))
+  width=$((width - ${#message}))
+  if [[ -n "$message" ]]; then width=$((width - 3)); fi
+  ((width = width < 0 ? 0 : width))
 
   local progress=$((percentage * width / 100))
   local remaining=$((width - progress))
-  local progress_bar=$(printf "[%s%s]" $(printf "#%.0s" $(seq 1 $progress)) "$(printf ' %.0s' $(seq 1 $remaining))")
+  local progress_bar=""
+  progress_bar=$(printf "[%s%s]" "$(printf "#%.0s" $(seq 1 $progress))" "$(printf ' %.0s' $(seq 1 $remaining))")
   local final_message="${message:+[${message}] }${progress_bar} ${percentage}%"
 
   case "$bar_type" in
-    info) printf "\r\e[32m%s\e[0m" "$final_message" ;;
-    warn) printf "\r\e[33m%s\e[0m" "$final_message" ;;
-    error) printf "\r\e[31m%s\e[0m" "$final_message" ;;
-    *) printf "\r%s" "$final_message" ;;
+  info) printf "\r\e[32m%s\e[0m" "$final_message" ;;
+  warn) printf "\r\e[33m%s\e[0m" "$final_message" ;;
+  error) printf "\r\e[31m%s\e[0m" "$final_message" ;;
+  *) printf "\r%s" "$final_message" ;;
   esac
 }
 
 # yay
 install_yay() {
-  if yay --version &> /dev/null; then
+  if yay --version &>/dev/null; then
     warn "yay is already installed"
   else
-    bootstrap_aur
+    if sudo pacman -S --needed --noconfirm base-devel git >/dev/null 2>&1; then
+      info "Dependencies installed successfully"
+    else
+      error "Failed to install dependencies"
+    fi
     temp=$(mktemp -d)
-    git clone https://aur.archlinux.org/yay-bin.git $temp/yay-bin
-    cd $temp/yay-bin
-    makepkg -si --noconfirm
-    cd ~
-    rm -rf $temp
+    info "Cloning yay..."
+    git clone https://aur.archlinux.org/yay-bin.git "$temp/yay-bin" >/dev/null 2>&1
+    cd "$temp/yay-bin" || exit
+    info "Building yay..."
+    if makepkg -si --noconfirm >/dev/null 2>&1; then
+      info "yay installed successfully"
+    else
+      error "Failed to install yay"
+    fi
+    cd ~ || exit
+    rm -rf "$temp"
   fi
 }
 
 # aur
 install() {
-  if ! command -v yay &> /dev/null; then
+  if ! command -v yay &>/dev/null; then
     info "yay is not installed. Installing yay..."
     install_yay
   fi
@@ -82,7 +85,7 @@ install() {
     ((progress++))
     local percentage=$((progress * 100 / total_packages))
     progress_bar "$percentage" "$package"
-    if yay -S --noconfirm --needed "$package" > /dev/null 2>&1; then
+    if yay -S --noconfirm --needed "$package" >/dev/null 2>&1; then
       progress_bar "$percentage" "$package" "info"
       sleep 0.05
       success+=("✅ $package")

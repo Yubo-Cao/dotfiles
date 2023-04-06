@@ -32,4 +32,4 @@ install "Hypr utilies" \
     autotiling-rs \
     polkit-dump-agent xorg-xhost \
     xdg-desktop-portal xdg-desktop-portal-kde xdg-desktop-portal-hyprland-git \
-    hyprpaper
+    hyprpaper swayidle swaylock-effects-git

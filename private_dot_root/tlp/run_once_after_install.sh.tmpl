@@ -1,0 +1,24 @@
+#!/usr/bin/bash
+
+source "$CHEZMOI_SOURCE_DIR/common.sh"
+
+install "Tlp" \
+    tlp tlp-rdw \
+    smartmontools ethtool
+
+info "Enabling Tlp service"
+sudo systemctl enable --now tlp
+
+info "Mask systemd-rfkill"
+sudo systemctl mask --now systemd-rfkill.service
+sudo systemctl mask --now systemd-rfkill.socket
+
+# re-run on change
+# tlp.conf hash: {{ include "private_dot_root/tlp/tlp.conf" | sha256sum }}
+info "Replace /etc/tlp.conf with custom config"
+if sudo diff -q /etc/tlp.conf "$HOME/.root/tlp/tlp.conf" >/dev/null; then
+    info "No changes to /etc/tlp.conf"
+else
+    info "Changes to /etc/tlp.conf detected"
+    sudo cp "~/.root/tlp/tlp.conf" /etc/tlp.conf
+fi

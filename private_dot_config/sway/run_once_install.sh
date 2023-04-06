@@ -24,8 +24,12 @@ install "Sway" \
 sudo systemctl enable --now seatd && \
     info "seatd enabled" || \
     error "failed to enable seatd"
+sudo usermod -aG seat $(whoami) \
+    && info "Added user to seat group" || \
+    error "failed to add user to seat group"
 
 install "Sway utilies" \
     grim slurp mako \
     wl-clipboard \
-    xdg-utils gnome-keyring xorg-xwayland
+    xdg-utils gnome-keyring xorg-xwayland \
+    autotiling-rs

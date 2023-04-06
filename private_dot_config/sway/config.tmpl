@@ -48,16 +48,16 @@ input "1267:12815:VEN_04F3:00_04F3:320F_Touchpad" {
 }
 
 ### Basic
+
 # Gap
 gaps outer 2
 gaps inner 6
 default_border pixel 2
-for_window [app_id="microsoft-edge-dev"] border csd
 
-# border background text indicator child_border
-client.focused		    #cbd5e1 #cbd5e1 #e2e8f0
-client.focused_inactive #e2e8f0 #e2e8f0 #f8fafc
-client.unfocused	    #f8fafc #f8fafc #f1f5f9
+# Client: border background text indicator child_border
+client.focused           {{.colors.slate_300}}  {{.colors.slate_300}}  {{.colors.slate_200}}
+client.focused_inactive  {{.colors.slate_200}}  {{.colors.slate_200}}  {{.colors.slate_100}}
+client.unfocused         {{.colors.slate_100}}  {{.colors.slate_100}}  {{.colors.slate_50}}
 
 # Redshift
 exec gammastep -t 5700:3600 -l 33.956215:-83.987961
@@ -66,6 +66,14 @@ exec gammastep -t 5700:3600 -l 33.956215:-83.987961
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
+# Window
+for_window [window_role = "pop-up"] floating enable
+for_window [window_role = "bubble"] floating enable
+for_window [window_role = "dialog"] floating enable
+for_window [window_role = "task_dialog"] floating enable
+for_window [window_type = "menu"] floating enable
+for_window [shell="xwayland"] title_format "<span>[X] %title゜</span>"
 
 ### Key bindings
 
@@ -198,7 +206,16 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-## Bar
+## XF86 keys
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioPlay exec playerctl play-pause
+
+### Bar
 bar {
    swaybar_command waybar
 }

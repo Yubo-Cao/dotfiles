@@ -31,6 +31,10 @@ function cz
     chezmoi $argv
 end
 
+function ce
+    chezmoi edit --watch $argv
+end
+
 set_environment
 
 if status is-interactive

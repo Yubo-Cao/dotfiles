@@ -106,3 +106,23 @@ install() {
     printf '%s\n' "${failure[@]}"
   fi
 }
+
+# modify kv conig
+modify_kv_config() {
+  local key=$1
+  local value=$2
+  local file=$3
+
+  if grep -q "$key" "$file"; then
+    if grep "^$key" "$file" | grep -q "$value"; then
+      info "$key is already set to $value in $file"
+      return
+    else
+      info "Modifying $key in $file..."
+      sudo sed -i "s|^\(#[ ]*\)\?$key.*$|$key=\"$value\"|" "$file"
+    fi
+  else
+    info "Adding $key to $file..."
+    echo "$key=$value" | sudo tee -a "$file" >/dev/null
+  fi
+}

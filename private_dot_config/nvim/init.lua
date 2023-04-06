@@ -1,7 +1,4 @@
 local plugin = require('plugin')
-require('plugin/configs/luasnip')
-require('plugin/configs/nvim_tree')
-require('plugin/configs/lsp')
 
 -- Common
 vim.o.tabstop = 4

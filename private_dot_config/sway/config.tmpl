@@ -82,6 +82,13 @@ exec polkit-dump-agent
 # Xwayland DPI fix
 exec xrdb -load ~/.Xresources
 
+# GTK Theme
+exec gsettings set org.gnome.desktop.interface gtk-theme 'Materia-light'  
+exec gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+
+# Autotiling
+exec autotiling-rs
+
 ### Key bindings
 
 ## Basic

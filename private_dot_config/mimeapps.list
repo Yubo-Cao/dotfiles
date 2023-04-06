@@ -1,7 +1,0 @@
-
-[Default Applications]
-x-scheme-handler/baiduyunguanjia=baidunetdisk.desktop
-text/html=microsoft-edge-dev.desktop
-x-scheme-handler/http=microsoft-edge-dev.desktop
-x-scheme-handler/https=microsoft-edge-dev.desktop
-x-scheme-handler/chrome=microsoft-edge-dev.desktop

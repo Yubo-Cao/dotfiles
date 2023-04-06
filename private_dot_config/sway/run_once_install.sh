@@ -33,4 +33,5 @@ install "Sway utilies" \
     wl-clipboard \
     xdg-utils gnome-keyring xorg-xwayland \
     autotiling-rs \
-    polkit-dump-agent xorg-xhost
+    polkit-dump-agent xorg-xhost \
+    xdg-desktop-portal xdg-desktop-portal-kde xdg-desktop-portal-wlr

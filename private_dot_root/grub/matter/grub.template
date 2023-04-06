@@ -1,0 +1,6 @@
+GRUB_THEME={installation_dir}/theme.txt
+GRUB_GFXMODE=3072x1920,auto
+
+# Fedora specific fixes
+GRUB_ENABLE_BLSCFG=false
+GRUB_TERMINAL_OUTPUT=""

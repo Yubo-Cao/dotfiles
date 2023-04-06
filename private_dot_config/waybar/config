@@ -1,13 +1,13 @@
 {
     "layer": "buttom",
     "position": "top",
-    "height": 24,
+    "height": 32,
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode"
+        "wlr/workspaces",
+        "hyprland/submap"
     ],
     "modules-center": [
-        "sway/window"
+        "hyprland/window"
     ],
     "modules-right": [
         "pulseaudio",
@@ -18,13 +18,14 @@
         "temperature",
         "battery",
         "clock",
+        "hyprland/language",
         "tray"
     ],
     "battery": {
         "interval": 10,
         "states": {
             "warning": 30,
-            "critical": 15
+            "critical": 20
         },
         "format": "  {icon}  {capacity}%",
         "format-discharging": "{icon}  {capacity}%",
@@ -52,12 +53,12 @@
             "critical": 90
         }
     },
-    "custom/keyboard-layout": {
-        "exec": "swaymsg -t get_inputs | grep -m1 'xkb_active_layout_name' | cut -d '\"' -f4",
-        "interval": 30,
-        "format": "  {}",
-        "signal": 1,
-        "tooltip": false
+    "hyprland/language": {
+        "format": "{}",
+        "format-en": "en",
+        "format-es": "es",
+        "format-zh": "中",
+        "keyboard-name": "at-translated-set-2-keyboard"
     },
     "memory": {
         "interval": 5,
@@ -74,15 +75,15 @@
         "format-disconnected": "⚠  Disconnected",
         "tooltip-format": "{ifname}: {ipaddr}"
     },
-    "sway/mode": {
+    "hyprland/submap": {
         "format": "<span style=\"italic\">  {}</span>",
         "tooltip": false
     },
-    "sway/window": {
+    "hyprland/window": {
         "format": "{}",
         "max-length": 120
     },
-    "sway/workspaces": {
+    "wlr/workspaces": {
         "all-outputs": false,
         "disable-scroll": true,
         "format": "{icon} {name}",

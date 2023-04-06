@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 source "$CHEZMOI_SOURCE_DIR/common.sh"
 
-install "Display fonts for Sway" \
+install "Display fonts" \
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
     ttf-firacode-nerd \
     inter-font \
@@ -24,12 +24,12 @@ install "Sway" \
 sudo systemctl enable --now seatd && \
     info "seatd enabled" || \
     error "failed to enable seatd"
-sudo usermod -aG seat $(whoami) \
+sudo usermod -aG seat "$(whoami)" \
     && info "Added user to seat group" || \
     error "failed to add user to seat group"
 
 install "Sway utilies" \
-    grim slurp mako \
+    grim slurp \
     wl-clipboard \
     xdg-utils gnome-keyring xorg-xwayland \
     autotiling-rs \

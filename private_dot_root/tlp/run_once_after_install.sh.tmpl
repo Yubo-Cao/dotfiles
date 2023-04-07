@@ -4,7 +4,8 @@ source "$CHEZMOI_SOURCE_DIR/common.sh"
 
 install "Tlp" \
     tlp tlp-rdw \
-    smartmontools ethtool
+    smartmontools ethtool \
+    acpi_call
 
 info "Enabling Tlp service"
 sudo systemctl enable --now tlp

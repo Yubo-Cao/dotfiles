@@ -20,6 +20,15 @@ exec-once = swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
     timeout 600 'hyprctl dispatch dmps off' resume 'hyprctl dispatch dmps on' \
     before-sleep 'swaylock -f -c 000000'
+bindl=,switch:off:Lid Switch,exec,hyprctl dispatch dmps off
+bindl=,switch:on:Lid Switch,exec,hyprctl dispatch dmps on
+
+# Nvidia
+env = LIBVA_DRIVER_NAME,nvidia
+env = XDG_SESSION_TYPE,wayland
+env = GBM_BACKEND,nvidia-drm
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+env = WLR_NO_HARDWARE_CURSORS,1
 
 ### Montior
 # 1.5 scaling
@@ -53,7 +62,7 @@ input {
 general {
     gaps_in = 4
     gaps_out = 8
-    border_size = 2
+    border_size = 4
     col.active_border = rgba({{.hcolors.primary_500}}ee) rgba({{.hcolors.primary_600}}ee) 45deg
     col.inactive_border = rgba({{.hcolors.slate_500}}aa)
 
@@ -69,7 +78,7 @@ decoration {
     blur = yes
     blur_size = 3
     blur_passes = 1
-    blur_new_optimizations = on
+    blur_new_optimizations = off
 
     drop_shadow = yes
     shadow_range = 4
@@ -106,6 +115,8 @@ gestures {
 
 misc {
     key_press_enables_dpms = true
+    vfr = false
+    vrr = 1
 }
 
 ### Keyboard

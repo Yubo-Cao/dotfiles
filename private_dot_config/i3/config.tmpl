@@ -20,7 +20,7 @@ client.focused {{.colors.primary_500}} {{.colors.background.focus}} {{.colors.te
 client.unfocused {{.colors.slate_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.slate_500}} {{.colors.slate_400}}
 client.urgent {{.colors.red_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.red_500}} {{.colors.red_400}}
 # Wallpaper
-exec alwaus nitrogen --restore
+exec alwaus nitrogen --restore --force-setter=xinerama
 
 # start a terminal
 bindsym $mod+Return exec kitty

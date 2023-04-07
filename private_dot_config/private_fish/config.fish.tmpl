@@ -1,12 +1,6 @@
-function set_environment
-    # Fcitx
-    set -Ux GTK_IM_MODULE fcitx
-    set -Ux QT_IM_MODULE fcitx
-    set -Ux XMODIFIERS @im=fcitx
-    set -Ux SDL_IM_MODULE fcitx
-    set -Ux GLFW_IM_MODULE ibus
-
+function set_wayland_environment
     # Wayland
+    set -Ux GTK_BACKEND wayland
     set -Ux MOZ_ENABLE_WAYLAND 1
     set -Ux MOZ_WEBRENDER 1
     set -Ux QT_QPA_PLATFORM wayland
@@ -16,6 +10,15 @@ function set_environment
     set -Ux XDG_SESSION_TYPE wayland
     set -Ux XDG_CURRENT_DESKTOP hyprland
     set -Ux XDG_SESSION_DESKTOP hyprland
+end
+
+function set_environment
+    # Fcitx
+    set -Ux GTK_IM_MODULE fcitx
+    set -Ux QT_IM_MODULE fcitx
+    set -Ux XMODIFIERS @im=fcitx
+    set -Ux SDL_IM_MODULE fcitx
+    set -Ux GLFW_IM_MODULE ibus
 
     # Theme
     set -Ux QT_QPA_PLATFORMTHEME qt5ct
@@ -36,6 +39,9 @@ function ce
 end
 
 set_environment
+{{- if .wayland }}
+set_wayland_environment
+{{- end }}
 
 if status is-interactive
     # Commands to run in interactive sessions can go here

@@ -1,0 +1,19 @@
+### Output
+
+# Fix tearing
+exec --no-startup-id picom --backend glx
+
+# Scaling
+exec xrandr --output eDP-1 --dpi 220
+exec xrandr --output HDMI-1 --dpi 96 --scale 1x1 --right-of eDP-1
+exec xrandr --output HDMI-1 --dpi 96 --scale 1.5x1.5 --right-of eDP-1
+
+# Wallpaper
+exec nitrogen --restore --force-setter=xinerama
+
+### Input
+
+# Tap to click & Natural Scrolling
+exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Tapping Enabled' 1
+exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Natural Scrolling Enabled' 1
+

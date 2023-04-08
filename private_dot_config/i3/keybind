@@ -1,51 +1,38 @@
-### Constant
-set $mod Mod4
-# Vim
-set $left h
-set $down j
-set $up k
-set $right l
+### Keybind
 
-### Basic
-# Font
-font pango:Noto Sans 8
-# Lock Screen
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-# Fcitx
-exec --no-startup-id fcitx5
-# Color for border
-client.focused {{.colors.primary_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.primary_500}} {{.colors.primary_400}}
-client.unfocused {{.colors.slate_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.slate_500}} {{.colors.slate_400}}
-client.urgent {{.colors.red_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.red_500}} {{.colors.red_400}}
+## Basic
+# split
+bindsym $mod+y split h
+bindsym $mod+v split v
 
-# start a terminal
-bindsym $mod+Return exec kitty
+# full screen
+bindsym $mod+f fullscreen toggle
+
+# layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 
+bindsym $mod+Shift+r restart
+# exit i3 
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+## Application
+# terminal
+bindsym $mod+Return exec kitty
 # rofi
 bindsym $mod+d exec --no-startup-id rofi -show drun
+# neovide
+bindsym $mod+n exec neovide
+# thunar
+bindsym $mod+x exec thunar
 
-# Border
-border_radius 8
-for_window [class=".*"] border pixel 4
-gaps outer 4
-gaps inner 4
-
-### Output
-# Fix tearing
-exec --no-startup-id picom --backend glx
-# Scaling
-exec xrandr --output eDP-1 --dpi 220
-exec xrandr --output HDMI-1 --dpi 96 --scale 1x1 --right-of eDP-1
-exec xrandr --output HDMI-1 --dpi 96 --scale 1.5x1.5 --right-of eDP-1
-# Wallpaper
-exec nitrogen --restore --force-setter=xinerama
-
-### Keybind
 ## XF86
 # Adjust volume
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -59,12 +46,17 @@ bindsym XF86MonBrightnessUp exec --no-startup-id sudo light -A 5
 bindsym XF86MonBrightnessDown exec --no-startup-id sudo light -U 5
 
 ## Floating
-# Drag title bar to move floating windows
-tiling_drag modifier titlebar
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
+# drag floating window
+floating_modifier $mod
+tiling_drag modifier titlebar
+
+## scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 ## Focus
 # change focus
@@ -72,8 +64,6 @@ bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
 bindsym $mod+$right focus right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
@@ -84,29 +74,15 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-
-# alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Split
-bindsym $mod+n split h
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
 # focus the parent container
 bindsym $mod+a focus parent
 
-# Workspace
+## Workspace
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -142,20 +118,12 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-# resize window (you can also use the mouse for that)
+## Resize
 mode "resize" {
     bindsym $left resize shrink width 10 px or 10 ppt
-    bindsym $top resize grow height 10 px or 10 ppt
-    bindsym $bottom resize shrink height 10 px or 10 ppt
+    bindsym $up resize grow height 10 px or 10 ppt
+    bindsym $down resize shrink height 10 px or 10 ppt
     bindsym $right resize grow width 10 px or 10 ppt
-
     bindsym Left resize shrink width 10 px or 10 ppt
     bindsym Down resize grow height 10 px or 10 ppt
     bindsym Up resize shrink height 10 px or 10 ppt
@@ -168,17 +136,5 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-## Eww
-exec_always --no-startup-id eww daemon
-exec_always --no-startup-id eww open bar
-for_window[instance="eww"] floating enable, border none, sticky enable
 
-## scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
-### Input
-# Tap to click & Natural Scrolling
-exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Tapping Enabled' 1
-exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Natural Scrolling Enabled' 1
 

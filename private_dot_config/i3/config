@@ -1,0 +1,12 @@
+### Constant
+set $mod Mod4
+# Vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+include hardware
+include basic
+include keybind
+

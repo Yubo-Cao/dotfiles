@@ -1,0 +1,26 @@
+### Basic
+
+## CSS
+# font
+font pango:Inter 8
+# color for border
+client.focused   {{.colors.primary_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.primary_500}} {{.colors.primary_400}}
+client.unfocused {{.colors.slate_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.slate_500}} {{.colors.slate_400}}
+client.urgent    {{.colors.red_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.red_500}} {{.colors.red_400}}
+# border
+border_radius 8
+for_window [class=".*"] border pixel 4
+gaps outer 4
+gaps inner 4
+
+## Daemon
+# lock screen
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# fcitx
+exec --no-startup-id fcitx5
+## eww
+exec_always --no-startup-id eww daemon
+exec_always --no-startup-id eww open bar
+for_window [instance="eww"] floating enable, border none, sticky enable
+
+

@@ -1,0 +1,11 @@
+# set use 2 spaces
+defaultIndent: "  "
+
+indentAfterItems:
+    itemize: 0
+    itemize*: 0
+    enumerate: 0
+    enumerate*: 0
+    description: 0
+    description*: 0
+    list: 0

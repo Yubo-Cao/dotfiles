@@ -28,6 +28,10 @@ function set_environment
 
     # Github
     set -Ux GITHUB_PAT {{ .github_pat }}
+
+    # Pyenv
+    set -Ux PYENV_ROOT $HOME/.pyenv
+    set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
 end
 
 function cz
@@ -38,12 +42,16 @@ function ce
     chezmoi edit --watch $argv
 end
 
+function z
+    zoxide $argv
+end
+
 set_environment
 {{- if .wayland }}
 set_wayland_environment
 {{- end }}
 
 if status is-interactive
-    # Commands to run in interactive sessions can go here
 end
 
+pyenv init - | source

@@ -30,10 +30,6 @@ vim.cmd([[
     smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>' 
 ]])
 
-require("luasnip.loaders.from_lua").load({
-    paths = vim.fn.expand("~/AppData/Local/nvim/snip/")
-})
-
 -- Screen line movement
 vim.cmd([[
     function! ScreenMovement(movement)
@@ -79,3 +75,7 @@ vim.api.nvim_set_keymap("n", "<C-S-E>", ":NvimTreeToggle<CR>", {
     silent = true
 })
 
+-- Lua Snip
+require("luasnip.loaders.from_lua").load({
+    paths = vim.fn.expand("~/.config/nvim/snip/")
+})

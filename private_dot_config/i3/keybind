@@ -9,7 +9,7 @@ bindsym $mod+n exec neovide
 # thunar
 bindsym $mod+x exec thunar
 # flameshot
-bindsym $mod+F1 exec flameshot gui
+bindsym F1 --release exec flameshot gui
 
 ## Basic
 # split

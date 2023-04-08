@@ -9,7 +9,7 @@ from i3ipc import Connection, Event, Con
 
 logger = getLogger(__name__)
 logger.addHandler(StreamHandler())
-logger.addHandler(FileHandler("autotiling.log"))
+logger.addHandler(FileHandler("/tmp/autotiling.log"))
 
 
 def resolve_output(container: Con) -> str | None:

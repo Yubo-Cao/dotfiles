@@ -10,6 +10,8 @@ bindsym $mod+n exec neovide
 bindsym $mod+x exec thunar
 # flameshot
 bindsym F1 --release exec flameshot gui
+# edge
+bindsym $mod+p exec --no-startup-id microsoft-edge-dev
 
 ## Basic
 # split

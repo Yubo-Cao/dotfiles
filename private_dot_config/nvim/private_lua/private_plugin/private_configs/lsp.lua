@@ -95,6 +95,13 @@ lspconfig['lua_ls'].setup {
     },
 }
 
+
+lspconfig['bashls'].setup {
+    on_attach = on_attach,
+    flags = lsp_flags,
+    capabilities = capabilities,
+}
+
 -- Auto-complete with luasnip
 -- local cmp = require 'cmp'
 -- local luasnip = require 'luasnip'

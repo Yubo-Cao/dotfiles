@@ -1,0 +1,15 @@
+[Unit]
+Description=Rclone mounting personal Google Drive
+After=network-online.target
+
+[Service]
+Type=simple
+StandardOutput=journal
+StandardError=journal
+ExecStart=/usr/bin/rclone mount personal:/ /home/yubo/personal --vfs-cache-mode full 
+ExecStop=/bin/fusermount -uz /home/yubo/personal
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=default.target

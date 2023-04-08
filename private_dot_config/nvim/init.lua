@@ -1,4 +1,4 @@
-local plugin = require('plugin')
+require('plugin')
 
 -- Common
 vim.o.tabstop = 4

@@ -19,8 +19,6 @@ exec --no-startup-id fcitx5
 client.focused {{.colors.primary_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.primary_500}} {{.colors.primary_400}}
 client.unfocused {{.colors.slate_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.slate_500}} {{.colors.slate_400}}
 client.urgent {{.colors.red_500}} {{.colors.background.focus}} {{.colors.text.focus}} {{.colors.red_500}} {{.colors.red_400}}
-# Wallpaper
-exec alwaus nitrogen --restore --force-setter=xinerama
 
 # start a terminal
 bindsym $mod+Return exec kitty
@@ -44,6 +42,8 @@ exec --no-startup-id picom --backend glx
 exec xrandr --output eDP-1 --dpi 220
 exec xrandr --output HDMI-1 --dpi 96 --scale 1x1 --right-of eDP-1
 exec xrandr --output HDMI-1 --dpi 96 --scale 1.5x1.5 --right-of eDP-1
+# Wallpaper
+exec nitrogen --restore --force-setter=xinerama
 
 ### Keybind
 ## XF86
@@ -168,11 +168,17 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bar {
-    i3bar_command eww open bar
-}
+## Eww
+exec_always --no-startup-id eww daemon
+exec_always --no-startup-id eww open bar
+for_window[instance="eww"] floating enable, border none, sticky enable
+
+## scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
 ### Input
 # Tap to click & Natural Scrolling
 exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Tapping Enabled' 1
 exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Natural Scrolling Enabled' 1
+

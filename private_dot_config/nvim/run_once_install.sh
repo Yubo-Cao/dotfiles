@@ -14,3 +14,7 @@ info "Install Python language server"
 sudo npm install -g pyright
 info "Install Bash language server"
 sudo npm install -g bash-language-server
+
+# VimTeX
+install "Zathura" \
+    zathura zathura-pdf-poppler

@@ -8,8 +8,18 @@ function set_wayland_environment
     set -Ux SDL_VIDEODRIVER wayland
     set -Ux _JAVA_AWT_WM_NONREPARENTING 1
     set -Ux XDG_SESSION_TYPE wayland
-    set -Ux XDG_CURRENT_DESKTOP hyprland
-    set -Ux XDG_SESSION_DESKTOP hyprland
+end
+
+function unset_wayland_environment
+    # Wayland
+    set -e GTK_BACKEND
+    set -e MOZ_ENABLE_WAYLAND
+    set -e MOZ_WEBRENDER
+    set -e QT_QPA_PLATFORM
+    set -e CLUTTER_BACKEND
+    set -e SDL_VIDEODRIVER
+    set -e _JAVA_AWT_WM_NONREPARENTING
+    set -e XDG_SESSION_TYPE
 end
 
 function set_environment
@@ -32,6 +42,10 @@ function set_environment
     # Pyenv
     set -Ux PYENV_ROOT $HOME/.pyenv
     set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
+
+    # i3
+    set -Ux XDG_CURRENT_DESKTOP i3 
+    set -Ux XDG_SESSION_DESKTOP i3 
 end
 
 function cz
@@ -46,6 +60,7 @@ function nv
     neovide $argv
 end
 
+unset_wayland_environment
 set_environment
 {{- if .wayland }}
 set_wayland_environment

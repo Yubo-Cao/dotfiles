@@ -46,6 +46,23 @@ function set_environment
     # i3
     set -Ux XDG_CURRENT_DESKTOP i3 
     set -Ux XDG_SESSION_DESKTOP i3 
+
+    # texlive
+    if not contains "/usr/local/texlive/2023/bin/x86_64-linux" $PATH
+        fish_add_path /usr/local/texlive/2023/bin/x86_64-linux
+    end
+    if not contains "/usr/local/texlive/2023/texmf-dist/doc/info" $INFOPATH
+        if not set -q INFOPATH
+            set -U INFOPATH
+        end
+        set -Uxa INFOPATH /usr/local/texlive/2023/texmf-dist/doc/info
+    end
+    if not contains "/usr/local/texlive/2023/texmf-dist/doc/man" $MANPATH
+        if not set -q MANPATH
+            set -U MANPATH
+        end
+        set -Uxa MANPATH /usr/local/texlive/2023/texmf-dist/doc/man 
+    end
 end
 
 function cz

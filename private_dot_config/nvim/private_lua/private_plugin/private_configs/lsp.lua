@@ -99,7 +99,7 @@ lspconfig['lua_ls'].setup {
 local cmp = require 'cmp'
 
 -- Luasnip setup
-local luasnip = require('luasnip')
+local luasnip = require 'luasnip'
 
 cmp.setup {
     snippet = {

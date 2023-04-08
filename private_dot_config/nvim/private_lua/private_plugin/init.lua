@@ -1,15 +1,13 @@
 vim.cmd [[packadd packer.nvim]]
 
 local function config()
-    require('configs/luasnip')
-    require('configs/nvim_tree')
-    require('configs/lsp')
-    require('configs/nvim_colorizer')
+    require('plugin/configs/luasnip')
+    require('plugin/configs/nvim_tree')
+    require('plugin/configs/lsp')
+    require('plugin/configs/nvim_colorizer')
 end
 
-if not pcall(config) then
-    print("Failed to load configurations")
-end
+config()
 
 return require('packer').startup(function(use)
     -- Package manager

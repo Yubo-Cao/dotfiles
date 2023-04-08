@@ -42,6 +42,10 @@ function ce
     chezmoi edit --watch $argv
 end
 
+function nv
+    neovide $argv
+end
+
 set_environment
 {{- if .wayland }}
 set_wayland_environment

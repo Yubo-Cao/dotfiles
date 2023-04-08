@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+
+source "$CHEZMOI_SOURCE_DIR/common.sh"
+
+info "Install NVIDIA"
+install NVIDIA \
+    nvidia-dkms nvidia-utils
+install "CUDA" \
+    cuda intel-compute-runtime
+install "Optimus manager" \
+    optimus-manager-git \
+    optimus-manager-qt-git
+
+# re-run on change
+# optimus-manager.conf hash: {{ include "private_dot_root/nvidia/optimus-manager.conf" | sha256sum }}
+
+info "Copy optimus manager configuration"
+src="$HOME/.root/nvidia/optimus-manager.conf"
+dst="/etc/optimus-manager/optimus-manager.conf"
+
+if sudo diff -q "$src" "$dst" >/dev/null; then
+    info "No changes to $dst"
+else
+    info "Changes to $dst detected"
+    sudo cp "$src" "$dst"
+fi
+

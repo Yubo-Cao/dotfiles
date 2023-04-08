@@ -1,0 +1,48 @@
+-- Hotkeys
+vim.cmd([[
+    " press <Tab> to expand or jump in a snippet
+    imap <silent><expr> <Tab> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<Tab>' 
+
+    inoremap <silent> <S-Tab> <cmd>lua require'luasnip'.jump(-1)<Cr>
+    snoremap <silent> <Tab> <cmd>lua require('luasnip').jump(1)<Cr>
+    snoremap <silent> <S-Tab> <cmd>lua require('luasnip').jump(-1)<Cr>
+
+    " For changing choices in choice mode
+    imap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>'
+    smap <silent><expr> <C-E> luasnip#choice_active() ? '<Plug>luasnip-next-choice' : '<C-E>' 
+]])
+
+-- A little bit of acronyms
+local ls = require("luasnip")
+local s = ls.snippet
+local sn = ls.snippet_node
+local isn = ls.indent_snippet_node
+local t = ls.text_node
+local i = ls.insert_node
+local f = ls.function_node
+local c = ls.choice_node
+local d = ls.dynamic_node
+local r = ls.restore_node
+local events = require("luasnip.util.events")
+local ai = require("luasnip.nodes.absolute_indexer")
+local fmt = require("luasnip.extras.fmt").fmt
+local m = require("luasnip.extras").m
+local lambda = require("luasnip.extras").l
+local postfix = require("luasnip.extras.postfix").postfix
+
+-- Configuration
+ls.config.set_config({
+  enable_autosnippets = true,
+  store_selection_keys = "<Tab>",
+  region_check_events = 'InsertEnter',
+  delete_check_events = 'InsertLeave',
+})
+
+-- Load snippets
+require("luasnip.loaders.from_lua").load({
+{{ if eq .chezmoi.os "linux" }}
+    paths = vim.fn.expand("~/.config/nvim/snip/")
+{{ else }}
+    paths = vim.fn.expand("~/Appdata/local/nvim/snip")
+{{ end }}
+})

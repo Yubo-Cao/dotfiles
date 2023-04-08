@@ -5,6 +5,7 @@ local function config()
     require('plugin/configs/nvim_tree')
     require('plugin/configs/lsp')
     require('plugin/configs/nvim_colorizer')
+    require('plugin/configs/lualine')
 end
 
 config()
@@ -62,5 +63,11 @@ return require('packer').startup(function(use)
         run = function() 
             require('colorizer').setup()
         end
+    }
+
+    -- Lualine
+    use {
+      'nvim-lualine/lualine.nvim',
+      requires = { 'nvim-tree/nvim-web-devicons', opt = true }
     }
 end)

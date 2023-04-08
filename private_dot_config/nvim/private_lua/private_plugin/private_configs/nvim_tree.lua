@@ -1,14 +1,11 @@
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- disable internal file maanger
+vim.g.loaded_netrw = 0
+vim.g.loaded_netrwPlugin = 0
 
--- set termguicolors to enable highlight groups
+-- enable highlight groups
 vim.opt.termguicolors = true
 
--- empty setup using defaults
-require("nvim-tree").setup()
-
--- OR setup with some options
+-- setup with options
 require("nvim-tree").setup({
   sort_by = "case_sensitive",
   view = {
@@ -16,6 +13,7 @@ require("nvim-tree").setup({
     mappings = {
       list = {
         { key = "u", action = "dir_up" },
+        { key = "n", action = "dir_down" }
       },
     },
   },
@@ -26,3 +24,13 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
 })
+
+-- keybinds
+vim.g.nvim_tree_side = "left"
+vim.g.nvim_tree_width = 30
+vim.g.nvim_tree_ignore = {".git", "node_modules", ".cache"}
+
+vim.api.nvim_set_keymap("n", "<C-S-E>", ":NvimTreeToggle<CR>", {
+    silent = true
+})
+

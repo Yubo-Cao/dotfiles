@@ -28,6 +28,9 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
+-- Format on save
+vim.cmd [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()]]
+
 -- Language servers
 local lsp_flags = {
     debounce_text_changes = 150,
@@ -95,10 +98,8 @@ lspconfig['lua_ls'].setup {
     },
 }
 
--- Auto-complete
+-- Auto-complete with luasnip
 local cmp = require 'cmp'
-
--- Luasnip setup
 local luasnip = require 'luasnip'
 
 cmp.setup {

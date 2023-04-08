@@ -32,4 +32,4 @@ install "i3 utilies" \
     xdg-utils gnome-keyring \
     polkit-dump-agent xorg-xhost \
     xdg-desktop-portal xdg-desktop-portal-kde \
-    xclip xsel xrandr
+    xclip xsel xrandr autorandr

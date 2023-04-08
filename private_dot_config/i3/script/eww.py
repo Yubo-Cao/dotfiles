@@ -12,7 +12,7 @@ from i3ipc.replies import OutputReply, Rect
 
 logger = getLogger(__name__)
 logger.setLevel("DEBUG")
-logger.addHandler(FileHandler("/tmp/eww.log"))
+logger.addHandler(FileHandler("eww.log"))
 logger.addHandler(StreamHandler())
 
 

@@ -23,7 +23,7 @@ exec --no-startup-id fcitx5
 # exec_always --no-startup-id eww daemon
 # exec_always --no-startup-id eww open bar
 # polybar
-exec polybar
+exec_always bash ~/.config/polybar/launch.sh
 for_window [instance="polybar"] floating enable, border none, sticky enable
 
 

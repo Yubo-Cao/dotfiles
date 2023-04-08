@@ -37,7 +37,9 @@ def switch_splitting(
         output = resolve_output(container)
 
         if outputs and output not in outputs:
-            logger.debug("Autotiling turned off on output {}".format(output))
+            logger.debug(
+                "Autotiling turned off on output {}".format(output)
+            )
             return
 
         if (
@@ -87,10 +89,14 @@ def switch_splitting(
                 if new_layout != container.parent.layout:
                     result = i3.command(new_layout)
                     if result[0].success:
-                        logger.debug("Switched to {}".format(new_layout))
+                        logger.debug(
+                            "Switched to {}".format(new_layout)
+                        )
                     else:
                         logger.error(
-                            "Switch failed with err {}".format(result[0].error)
+                            "Switch failed with err {}".format(
+                                result[0].error
+                            )
                         )
         else:
             logger.warning(
@@ -152,11 +158,15 @@ def main():
     logger.setLevel(args.level)
 
     if args.outputs:
-        logger.debug("autotiling is only active on outputs:", ",".join(args.outputs))
+        logger.debug(
+            "autotiling is only active on outputs:",
+            ",".join(args.outputs),
+        )
 
     if args.workspaces:
         logger.debug(
-            "autotiling is only active on workspaces:", ",".join(args.workspaces)
+            "autotiling is only active on workspaces:",
+            ",".join(args.workspaces),
         )
 
     workspace_file = Path(gettempdir()) / "autotiling"
@@ -183,7 +193,9 @@ def main():
             i3.on(Event[e], handler)
             logger.debug("{} subscribed".format(Event[e]))
         except KeyError:
-            logger.error("'{}' is not a valid event".format(e), file=sys.stderr)
+            logger.error(
+                "'{}' is not a valid event".format(e), file=sys.stderr
+            )
             sys.exit(1)
 
     i3.main()

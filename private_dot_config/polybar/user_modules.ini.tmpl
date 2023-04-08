@@ -1,12 +1,3 @@
-;; ┌──────────────────────────────────────────────────────────────────────────────-----┐
-;; │░█▀█░█▀█░█░░░█░█░█▀▄░█▀█░█▀▄░░░░░░░░░█░█░█▀▀░█▀▀░█▀▄░░░█▄█░█▀█░█▀▄░█░█░█░░░█▀▀░█▀▀ │
-;; │░█▀▀░█░█░█░░░░█░░█▀▄░█▀█░█▀▄░░░░▀░░░░█░█░▀▀█░█▀▀░█▀▄░░░█░█░█░█░█░█░█░█░█░░░█▀▀░▀▀█ │
-;; │░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀░░░░▀░░░░▀▀▀░▀▀▀░▀▀▀░▀░▀░░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░▀▀▀░▀▀▀ │
-;; │░Created░By░Aditya░Shakya░@adi1090x░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░│
-;; └──────────────────────────────────────────────────────────────────────────────-----┘
-
-;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
 [module/updates]
 type = custom/script
 
@@ -26,7 +17,7 @@ tail = true
 
 ; Seconds to sleep between updates
 ; Default: 2 (0 if `tail = true`)
-interval = 5
+interval = 300
 
 ; Available tags:
 ;   <output> - deprecated
@@ -43,12 +34,7 @@ label = %output%
 ;   %counter%
 ;   %pid%
 ;
-; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c [command]"
-click-left = exo-open --launch TerminalEmulator &
-click-right = exo-open --launch TerminalEmulator &
-;;double-click-left = echo double left %counter%
-;;double-click-middle = echo double middle %counter%
-;;double-click-right = echo double right %counter%
+click-left = kitty fish -c 'yay -Syu; sleep 1; exit' &
 
 ; Available tokens:
 ;   %counter%
@@ -61,33 +47,13 @@ click-right = exo-open --launch TerminalEmulator &
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
-[module/launcher]
-type = custom/text
-content = 
-
-; "content" has the same properties as "format-NAME"
-content-background = ${color.primary}
-content-foreground = ${color.module-fg}
-content-padding = 2
-
-; "click-(left|middle|right)" will be executed using "/usr/bin/env sh -c $COMMAND"
-click-left = ~/.config/polybar/scripts/launcher.sh &
-;;click-middle = ~/.config/polybar/scripts/launcher-full
-click-right = ~/.config/polybar/scripts/color-switch.sh &
-
-; "scroll-(up|down)" will be executed using "/usr/bin/env sh -c $COMMAND"
-;;scroll-up = ~/.config/polybar/scripts/launcher.sh &
-;;scroll-down = ~/.config/polybar/scripts/color-switch.sh &
-
-;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
-
 [module/sysmenu]
 type = custom/text
 content = 
 
 content-background = ${color.primary}
-content-foreground = ${color.module-fg}
-content-padding = 2
+content-foreground = {{.colors.slate_50}}
+content-padding = 3
 
 click-left = ~/.config/polybar/scripts/powermenu.sh &
 

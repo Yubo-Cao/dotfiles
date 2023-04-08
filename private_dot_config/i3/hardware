@@ -4,10 +4,7 @@
 exec --no-startup-id picom --backend glx
 
 # Scaling
-exec xrandr --output eDP-1 --dpi 220
-exec xrandr --output HDMI-1 --dpi 96 --scale 1x1 --right-of eDP-1
-exec sleep 0.5
-exec xrandr --output HDMI-1 --dpi 96 --scale 1.5x1.5 --right-of eDP-1
+exec --no-startup-id bash ~/.config/i3/scale.sh
 
 # Wallpaper
 exec nitrogen --restore --force-setter=xinerama

@@ -14,6 +14,8 @@ info "Install Python language server"
 sudo npm install -g pyright
 info "Install Bash language server"
 sudo npm install -g bash-language-server
+info "Install Grammarly language server"
+sudo npm install -g grammarly-languageserver
 
 # VimTeX
 install "Zathura" \

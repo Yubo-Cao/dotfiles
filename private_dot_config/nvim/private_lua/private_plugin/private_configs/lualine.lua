@@ -1,10 +1,10 @@
 require('lualine').setup()
 local colors = {
-    red = '#dc2626', -- red_600
-    slate = '#475569', -- slate_600
-    black = '#1e293b', -- slate_800
-    white = '#f8fafc', -- slate_50
-    blue = '#2563eb', -- blue_600
+    red = '#dc2626',    -- red_600
+    slate = '#475569',  -- slate_600
+    black = '#1e293b',  -- slate_800
+    white = '#f8fafc',  -- slate_50
+    blue = '#2563eb',   -- blue_600
     violet = '#7c3aed', -- violet_600
     indigo = '#4f46e5', -- indigo_600
 }
@@ -16,9 +16,9 @@ local theme = {
         c = { fg = colors.black, bg = colors.white },
         z = { fg = colors.white, bg = colors.black },
     },
-    insert = { a = { fg = colors.black, bg = colors.blue } },
-    visual = { a = { fg = colors.black, bg = colors.violet } },
-    replace = { a = { fg = colors.black, bg = colors.indigo } },
+    insert = { a = { fg = colors.white, bg = colors.blue } },
+    visual = { a = { fg = colors.white, bg = colors.violet } },
+    replace = { a = { fg = colors.white, bg = colors.indigo } },
 }
 
 local empty = require('lualine.component'):extend()
@@ -90,9 +90,9 @@ require('lualine').setup {
                 'diagnostics',
                 source = { 'nvim' },
                 sections = { 'warn' },
-                diagnostics_color = { warn = { bg = colors.indigo , fg = colors.white } },
+                diagnostics_color = { warn = { bg = colors.indigo, fg = colors.white } },
             },
-            { 'filename', file_status = false,        path = 1 },
+            { 'filename', file_status = false,           path = 1 },
             { modified,   color = { bg = colors.violet } },
             {
                 '%w',

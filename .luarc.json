@@ -1,0 +1,29 @@
+{
+    "workspace.library": [
+        "/home/yubo/.config/nvim",
+        "/etc/xdg/nvim",
+        "/home/yubo/.local/share/nvim/site",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/LuaSnip",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/copilot.vim",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/firenvim",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/one-nvim",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/packer.nvim",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/vimtex",
+        "/usr/share/nvim/runtime",
+        "/usr/lib/nvim",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/after",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/cmp_luasnip/after",
+        "/home/yubo/.local/share/nvim/site/pack/packer/start/vimtex/after",
+        "/usr/share/vim/vimfiles",
+        "${3rd}/luassert/library"
+    ]
+}

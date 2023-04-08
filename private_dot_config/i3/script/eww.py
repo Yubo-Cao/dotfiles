@@ -127,7 +127,7 @@ async def main() -> None:
         output = await determine_output(i3, eww)
         name = eww.name.split(" ", 2)[-1]
         if name not in config:
-    n       logger.error("Could not find config for %s", name)
+            logger.error("Could not find config for %s", name)
             continue
         cfg = config[name]
         dimensions = {
@@ -138,11 +138,11 @@ async def main() -> None:
         }
         logger.debug(f"Setting geometry of {eww.name} to {dimensions}")
         await eww.command(
-            "floating enable;"
-            "sticky enable;"
-            f"resize set {dimensions['width']} {dimensions['height']};"
-            f"move position {dimensions['x']} {dimensions['y']};"
-            "border none;"
+            "floating enable,"
+            "sticky enable,"
+            f"move position {dimensions['x']} {dimensions['y']},"
+            f"resize set {dimensions['width']} {dimensions['height']},"
+            "border none"
         )
 
 

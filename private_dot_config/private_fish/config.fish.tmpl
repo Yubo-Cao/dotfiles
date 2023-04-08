@@ -42,10 +42,6 @@ function ce
     chezmoi edit --watch $argv
 end
 
-function z
-    zoxide $argv
-end
-
 set_environment
 {{- if .wayland }}
 set_wayland_environment
@@ -55,3 +51,4 @@ if status is-interactive
 end
 
 pyenv init - | source
+zoxide init fish | source

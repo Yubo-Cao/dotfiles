@@ -10,8 +10,9 @@ client.urgent    {{.colors.red_500}} {{.colors.background.focus}} {{.colors.text
 # border
 border_radius 8
 for_window [class=".*"] border pixel 4
+
 gaps outer 4
-gaps inner 4
+gaps inner 8
 
 ## Daemon
 # lock screen
@@ -19,8 +20,10 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # fcitx
 exec --no-startup-id fcitx5
 ## eww
-exec_always --no-startup-id eww daemon
-exec_always --no-startup-id eww open bar
-for_window [instance="eww"] floating enable, border none, sticky enable
+# exec_always --no-startup-id eww daemon
+# exec_always --no-startup-id eww open bar
+# polybar
+exec polybar
+for_window [instance="polybar"] floating enable, border none, sticky enable
 
 

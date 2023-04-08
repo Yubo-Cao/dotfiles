@@ -1,6 +1,8 @@
 #!/usr/bin/bash
 source "$CHEZMOI_SOURCE_DIR/common.sh"
 
+info "Setting up i3"
+
 install fonts \
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
     ttf-firacode-nerd \
@@ -30,4 +32,4 @@ install "i3 utilies" \
     xdg-utils gnome-keyring \
     polkit-dump-agent xorg-xhost \
     xdg-desktop-portal xdg-desktop-portal-kde \
-    xclip xsel
+    xclip xsel xrandr

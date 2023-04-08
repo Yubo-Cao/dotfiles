@@ -1,7 +1,7 @@
 ### Output
 
 # Fix tearing
-exec --no-startup-id picom --backend glx
+exec --no-startup-id picom --backend glx --experimental-backends --vsync opengl-swc
 
 # Scaling
 exec --no-startup-id bash ~/.config/i3/scale.sh

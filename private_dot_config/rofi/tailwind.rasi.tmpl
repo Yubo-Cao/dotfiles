@@ -6,7 +6,7 @@ window {
     border:  0px;
     border-radius: 6px;
 
-    background-color: {{.colors.background.focus}}80;
+    background-color: {{.web.background_primary}}80;
     spacing: 0;
     children:  [mainbox];
     orientation: horizontal;
@@ -14,20 +14,20 @@ window {
 
 mainbox {
     spacing: 0;
-    background-color: {{.colors.background.focus}};
+    background-color: {{.web.background_primary}};
     children: [ inputbar, message, listview ];
 }
 
 message {
-    color: {{.colors.text.default}};
+    color: {{.web.text_dark}};
     padding: 8;
-    background-color: {{.colors.background.default}};
+    background-color: {{.web.background_dark}};
 }
 
 inputbar {
-    color: {{.colors.text.default}};
+    color: {{.web.text_dark}};
     padding: 16px;
-    background-color: {{.colors.background.focus}};
+    background-color: {{.web.background_primary}};
 }
 
 entry, prompt, case-indicator {
@@ -51,13 +51,13 @@ element {
     padding: 12px;
     vertical-align: 0.5;
     border-radius: 4px;
-    color: {{.colors.background.default}};
-    text-color: {{.colors.text.default}};
+    color: {{.web.background_dark}};
+    text-color: {{.web.text_dark}};
 }
 
 element selected.normal {
-	background-color: {{.colors.background.focus}};
-	text-color: {{.colors.text.focus}};
+	background-color: {{.web.background_primary}};
+	text-color: {{.web.text_primary}};
 }
 
 element-text, element-icon {
@@ -72,15 +72,15 @@ element-icon {
 
 button {
     padding: 6px;
-    color: {{.colors.text.default}};
+    color: {{.web.text_dark}};
     horizontal-align: 0.5;
 
     border: 2px 0px 2px 2px;
     border-radius: 4px 0px 0px 4px;
-    border-color: {{.colors.slate_300}};
+    border-color: {{.web.dark_300}};
 }
 
 button selected normal {
     border: 2px 0px 2px 2px;
-    border-color: {{.colors.slate_300}};
+    border-color: {{.web.dark_300}};
 }

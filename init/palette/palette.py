@@ -69,7 +69,19 @@ def convert(colors):
         "rgb": apply_recursive(colors, lambda s: hex_to_rgb(s)),
     }
 
-    return table
+    def reduce(dct):
+        # reduce the last dimension of the dict
+        # {a: {b: 1, c: 1}} -> {a_b: 1, a_c: 1}
+        result = {}
+        for k, v in dct.items():
+            if isinstance(v, dict):
+                for k2, v2 in v.items():
+                    result[f"{k}_{k2}"] = v2
+            else:
+                result[k] = v
+        return result
+
+    return {k: reduce(v) for k, v in table.items()}
 
 
 def main():
@@ -85,7 +97,7 @@ def main():
         if hue not in data:
             logger.error(f"Invalid semantic color: {hue}")
             exit(1)
-    colors = {hue: data[hue] for hue in hues}
+    colors = {hue: data[cfg[hue]] for hue in "primary secondary tertiary dark".split()}
     for semantic in "background title text border".split():
         colors[semantic] = {
             hue: data[cfg[hue]][str(cfg[semantic])]

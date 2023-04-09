@@ -377,7 +377,7 @@ ws-icon-default = ♟
 ; Default: %mode%
 label-mode = %mode%
 label-mode-padding = 2
-label-mode-background = {{.colors.background.focus}}
+label-mode-background = {{.web.background_primary}}
 
 ; Available tokens:
 ;   %name%
@@ -407,7 +407,7 @@ label-unfocused-padding = 3
 ;   %output%
 ; Default: %icon%  %name%
 label-visible = %index%
-label-visible-underline = {{.colors.slate_600}}
+label-visible-underline = {{.web.text_dark}}
 label-visible-padding = 3
 
 ; Available tokens:
@@ -417,14 +417,14 @@ label-visible-padding = 3
 ;   %output%
 ; Default: %icon%  %name%
 label-urgent = %index%
-label-urgent-foreground = {{.colors.slate_50}}
-label-urgent-background = {{.colors.red_600}}
+label-urgent-foreground = {{.web.background_dark}}
+label-urgent-background = {{.web.background_secondary}}
 label-urgent-padding = 3
 
 ; Separator in between workspaces
 label-separator = |
 label-separator-padding = 1
-label-separator-foreground = {{.colors.slate_300}}
+label-separator-foreground = {{.web.border_secondary}}
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 

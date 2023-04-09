@@ -77,6 +77,10 @@ function nv
     neovide $argv
 end
 
+function icat
+    kitty +kitten icat $argv
+end
+
 unset_wayland_environment
 set_environment
 {{- if .wayland }}

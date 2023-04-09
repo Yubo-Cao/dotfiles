@@ -1,0 +1,200 @@
+### Basic
+# fcitx5
+exec-once = fcitx5
+# waybar
+exec-once = waybar
+# gammastep
+exec-once = gammastep -t 5700:3600 -l 33.956215:-83.987961
+# dbus / flameshot / gtk
+exec-once = systemctl --user import-environment display wayland_display swaysock
+exec-once = hash dbus-update-activation-environment 2>/dev/null && \
+    dbus-update-activation-environment --systemd display wayland_display swaysock
+exec-once = dbus-update-activation-environment --systemd display wayland_display swaysock
+# polkit
+exec-once = polkit-dumb-agent
+# GTK theme
+exec-once = gsettings set org.gnome.desktop.interface gtk-theme 'materia-light'  
+exec-once = gsettings set org.gnome.desktop.interface icon-theme 'papirus-dark'
+# Lock Screen
+exec-once = swayidle -w \
+    timeout 300 'swaylock -f -c 000000' \
+    timeout 600 'hyprctl dispatch dmps off' resume 'hyprctl dispatch dmps on' \
+    before-sleep 'swaylock -f -c 000000'
+bindl=,switch:off:Lid Switch,exec,hyprctl dispatch dmps off
+bindl=,switch:on:Lid Switch,exec,hyprctl dispatch dmps on
+
+# Nvidia
+env = LIBVA_DRIVER_NAME,nvidia
+env = XDG_SESSION_TYPE,wayland
+env = GBM_BACKEND,nvidia-drm
+env = __GLX_VENDOR_LIBRARY_NAME,nvidia
+env = WLR_NO_HARDWARE_CURSORS,1
+
+### Montior
+# 1.5 scaling
+monitor = eDP-1,3072x1920@60,0x0,1.5
+# 3072 / 1.5 = 2048, left-rght setup
+monitor = HDMI-A-1,190x1080@60,2048x0,1
+# wallpaper
+exec-once = hyprpaper
+# Xwayland DPI
+exec-once = xrdb -load ~/.Xresources
+
+### Environment
+env = XCURSOR_SIZE,24
+
+input {
+    kb_layout = us
+    repeat_rate = 30
+    repeat_delay = 500
+    sensitivity = 0
+
+    # mouse will always change keyboard focus
+    follow_mouse = 1
+    accel_profile  = adaptive
+
+    touchpad {
+        natural_scroll = yes
+        scroll_factor  = 0.35
+    }
+}
+
+general {
+    gaps_in = 4
+    gaps_out = 8
+    border_size = 4
+    col.active_border = rgba({{.hcolors.primary_500}}ee) rgba({{.hcolors.primary_600}}ee) 45deg
+    col.inactive_border = rgba({{.hcolors.slate_500}}aa)
+
+    layout = dwindle
+
+    resize_on_border = true
+    extend_border_grab_area = 8
+    hover_icon_on_border = true
+}
+
+decoration {
+    rounding = 4
+    blur = yes
+    blur_size = 3
+    blur_passes = 1
+    blur_new_optimizations = off
+
+    drop_shadow = yes
+    shadow_range = 4
+    shadow_render_power = 3
+    col.shadow = rgba(1a1a1aee)
+}
+
+animations {
+    enabled = true
+    bezier = ease_in, 0.76, 0.24, 0.44, 1 
+
+    animation = windowsIn, 1, 2, ease_in, popin 75%
+    animation = windowsOut, 1, 2, default, popin 75%
+    animation = windowsMove, 1, 2, default, popin 75%
+    animation = border, 1, 1, default
+    animation = borderangle, 1, 2, default
+    animation = fade, 1, 2, default
+    animation = workspaces, 1, 1, default
+}
+
+dwindle {
+    pseudotile = yes nds section below
+    preserve_split = yes
+}
+
+master {
+    new_is_master = true
+}
+
+gestures {
+    workspace_swipe = true
+    workspace_swipe_fingers = 4
+}
+
+misc {
+    key_press_enables_dpms = true
+    vfr = false
+    vrr = 1
+}
+
+### Keyboard
+
+# Windows key
+$mod = SUPER
+# Vim keys
+$left = h
+$down = j
+$up = k
+$right = l
+
+# Terminal - Kitty
+bind = $mod, Return, exec, kitty
+# Launcher - Wofi
+bind = $mod, d, exec, wofi --show drun
+
+# Close window
+bind = $mod SHIFT, Q, killactive, 
+# Toggle fullscreen
+bind = $mod, f, fullscreen, 0 # fullscreen
+bind = $mod SHIFT, f, fullscreen, 1 # max
+# Exit Hyprland
+bind = $mod SHIFT, E, exit 
+# Toggle floating
+bind = $mod SHIFT, space, togglefloating, 
+bind = $mod, P, pseudo, # dwindle
+bind = $mod, e, togglesplit, # dwindle
+
+# Move focus with mainMod + arrow keys
+bind = $mod, $left, movefocus, l
+bind = $mod, $right, movefocus, r
+bind = $mod, $up, movefocus, u
+bind = $mod, $down, movefocus, d
+
+# Switch workspaces with mainMod + [0-9]
+bind = $mod, 1, workspace, 1
+bind = $mod, 2, workspace, 2
+bind = $mod, 3, workspace, 3
+bind = $mod, 4, workspace, 4
+bind = $mod, 5, workspace, 5
+bind = $mod, 6, workspace, 6
+bind = $mod, 7, workspace, 7
+bind = $mod, 8, workspace, 8
+bind = $mod, 9, workspace, 9
+bind = $mod, 0, workspace, 10
+
+# Move active window to a workspace with mainMod + SHIFT + [0-9]
+bind = $mod SHIFT, 1, movetoworkspace, 1
+bind = $mod SHIFT, 2, movetoworkspace, 2
+bind = $mod SHIFT, 3, movetoworkspace, 3
+bind = $mod SHIFT, 4, movetoworkspace, 4
+bind = $mod SHIFT, 5, movetoworkspace, 5
+bind = $mod SHIFT, 6, movetoworkspace, 6
+bind = $mod SHIFT, 7, movetoworkspace, 7
+bind = $mod SHIFT, 8, movetoworkspace, 8
+bind = $mod SHIFT, 9, movetoworkspace, 9
+bind = $mod SHIFT, 0, movetoworkspace, 10
+
+# Scroll through existing workspaces with mod + scroll
+bind = $mod, mouse_down, workspace, e+1
+bind = $mod, mouse_up, workspace, e-1
+
+# Resize window
+bindm = $mod, mouse:273, resizewindow
+# Resize mode
+bind = $mod, r, submap, resize
+submap = resize
+binde = , $right, resizeactive, 10 0
+binde = , $left, resizeactive, -10 0
+binde = , $up, resizeactive, 0 -10
+binde = , $down, resizeactive, 0 10
+bind =, escape, submap, reset
+submap = reset
+
+# Move window
+bindm = $mod, mouse:272, movewindow
+bind = $mod SHIFT, $right, movewindow, r 
+bind = $mod SHIFT, $left, movewindow, l
+bind = $mod SHIFT, $up, movewindow, u
+bind = $mod SHIFT, $down, movewindow, d

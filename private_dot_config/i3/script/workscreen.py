@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+import contextlib
+import fcntl
+import os
+import signal
 import subprocess
 import time
 from collections.abc import Callable
@@ -8,7 +12,6 @@ from typing import NamedTuple
 
 import pyudev
 from i3ipc import Connection
-from i3ipc.events import Event
 from rich.logging import RichHandler
 from tomlkit import loads
 from Xlib.display import Display
@@ -18,6 +21,31 @@ log = getLogger(__name__)
 log.setLevel("DEBUG")
 log.addHandler(RichHandler())
 log.addHandler(FileHandler("/tmp/workscreen.log"))
+
+
+@contextlib.contextmanager
+def lock(filepath):
+    with os.fdopen(
+        os.open(filepath, os.O_RDWR | os.O_CREAT, mode=0o666),
+        mode="r+",
+        buffering=1,
+        encoding="utf-8",
+        newline="",
+    ) as f:
+        try:
+            fcntl.lockf(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except OSError:
+            yield int(f.readline())
+            return
+        f.truncate()
+        pid = os.getpid()
+        f.write(f"{pid}\n")
+        yield -1
+        fcntl.lockf(f, fcntl.LOCK_UN)
+        try:
+            os.unlink(filepath)
+        except OSError:
+            pass
 
 
 class XOutput(NamedTuple):
@@ -139,8 +167,28 @@ def run_hooks(general_cfg):
                 )
             )
             log.debug(f"Hook ran successfully: {hook}")
+            if delay := general_cfg.get("hook_delay", 0.0):
+                time.sleep(delay)
         except subprocess.CalledProcessError as e:
             log.error(f"Failed to run hook: {hook}")
+
+
+def call(cmd: list[str]):
+    log.debug(f"Running command: {' '.join(cmd)}")
+
+    try:
+        subprocess.run(
+            cmd,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            check=True,
+        )
+        log.debug("Command ran successfully")
+    except subprocess.CalledProcessError as e:
+        log.error("Failed to run command: %s", " ".join(cmd))
+        log.error(e.stderr)
 
 
 @robustify
@@ -148,23 +196,6 @@ def configure_outputs(
     output_cfgs: dict[str, dict[str, list[str]]],
     x_outputs: list[XOutput],
 ) -> None:
-    def call(cmd: list[str]):
-        log.debug(f"Running command: {' '.join(cmd)}")
-
-        try:
-            subprocess.run(
-                cmd,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.PIPE,
-                text=True,
-                encoding="utf-8",
-                check=True,
-            )
-            log.debug("Command ran successfully")
-        except subprocess.CalledProcessError as e:
-            log.error("Failed to run command: %s", " ".join(cmd))
-            log.error(e.stderr)
-
     old_output_names = set([o.name for o in old_outputs])
     if added := set([o.name for o in x_outputs]) - old_output_names:
         log.info("Adding outputs: %s", added)
@@ -250,7 +281,7 @@ def load_config() -> dict[str, dict]:
     return cfg
 
 
-def main() -> None:
+def create_handler():
     display = Display()
     log.debug("Connected to X server")
     if not display.has_extension("RANDR"):
@@ -273,19 +304,41 @@ def main() -> None:
         global old_outputs
         old_outputs = set(get_outputs(display))
         log.debug("old_outputs: %s", old_outputs)
+    return handler
+
+
+def daemon(handler):
     context = pyudev.Context()
     monitor = pyudev.Monitor.from_netlink(context)
-    monitor.filter_by(subsystem='drm')
+    monitor.filter_by(subsystem="drm")
     monitor.start()
     log.info("Listening for output events")
     for device in iter(monitor.poll, None):
-        if device.action == 'change':
+        if device.action == "change":
             log.info(f"Detected change in device {device}")
             handler()
 
-    log.info("Exiting")
 
-
+def main() -> None:
+    lock_path = Path("/run") / "user" / str(os.getuid()) / "workscreen.pid"
+    with lock(str(lock_path)) as pid:
+        if pid != -1:
+            log.warning("Another instance is already running")
+            os.kill(pid, signal.SIGTERM)
+            for _ in range(10):
+                if not lock_path.exists():
+                    log.info("Previous instance exited")
+                    break
+                time.sleep(0.1)
+            else:
+                log.error("Previous instance did not exit")
+    with lock(str(lock_path)):
+        log.info("Starting")
+        handler = create_handler()
+        try:
+            daemon(handler)
+        except KeyboardInterrupt:
+            log.info("Exiting")
 
 
 if __name__ == "__main__":

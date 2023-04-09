@@ -4,7 +4,8 @@ init = true
 hooks = ["python ~/.config/polybar/launch.py", 
          "nitrogen --restore --force-setter=xinerama",
          "picom --blur-method dual_kawase --blur-strength 7"]
-delay = 2
+delay = 0.5
+hook_delay = 0.5
 
 [eDP-1]
 xrandr = ["--dpi", "226", "--scale"]

@@ -4,11 +4,11 @@
 # exec --no-startup-id picom --backend glx 
 
 # Daemon
-exec python ~/.config/i3/script/workscreen.py
+exec_always --no-startup-id python ~/.config/i3/script/workscreen.py
 
 ### Input
 
 # Tap to click & Natural Scrolling
-exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Tapping Enabled' 1
-exec xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Natural Scrolling Enabled' 1
+exec --no-startup-id xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Tapping Enabled' 1
+exec --no-startup-id xinput set-prop 'VEN_04F3:00 04F3:320F Touchpad' 'libinput Natural Scrolling Enabled' 1
 

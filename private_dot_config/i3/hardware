@@ -4,7 +4,7 @@
 exec --no-startup-id picom --backend glx 
 
 # Scaling
-exec bash ~/.config/i3/script/scale.sh
+exec bash ~/.config/i3/scripts/scale.sh
 
 # Wallpaper
 exec nitrogen --restore --force-setter=xinerama

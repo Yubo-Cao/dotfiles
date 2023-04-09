@@ -33,3 +33,10 @@ install "i3 utilies" \
     polkit-dump-agent xorg-xhost \
     xdg-desktop-portal xdg-desktop-portal-kde \
     xclip xsel xrandr autorandr
+
+install "basic software" \
+    gwenview \
+    thunar \
+    microsoft-edge-dev-bin \
+    discord \
+    gimp

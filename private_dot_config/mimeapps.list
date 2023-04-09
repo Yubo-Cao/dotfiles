@@ -11,6 +11,7 @@ application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 application/pdf=org.pwmt.zathura-pdf-poppler.desktop
+image/gif=org.kde.gwenview.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -24,3 +25,4 @@ application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
 application/pdf=org.pwmt.zathura-pdf-poppler.desktop;
+image/gif=org.kde.gwenview.desktop;

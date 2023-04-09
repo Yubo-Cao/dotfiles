@@ -8,7 +8,7 @@ client.focused   {{.web.primary_600}} {{.web.background_primary}} {{.web.text_pr
 client.unfocused {{.web.dark_300}} {{.web.background_dark}} {{.web.text_dark}} {{.web.dark_main}} {{.web.dark_400}}
 client.urgent    {{.web.red_main}} {{.web.red_50}} {{.web.red_600}} {{.web.red_800}} {{.web.red_400}}
 # border
-border_radius 0
+border_radius 8
 for_window [class=".*"] border pixel 2
 
 gaps outer 2
@@ -29,5 +29,5 @@ for_window [instance="polybar"] floating enable, border none, sticky enable
 exec --no-startup-id redshift -t 5000:3600 -l 33.956215:-83.987961
 # autotiling
 exec --no-startup-id python ~/.config/i3/script/autotiling.py
-# nitrogen
-exec nitrogen --restore --force-setter=xinerama
+# nitrogen (notice hardware udev has it as hook)
+# exec nitrogen --restore --force-setter=xinerama

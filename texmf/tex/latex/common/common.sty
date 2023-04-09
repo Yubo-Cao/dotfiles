@@ -1,0 +1,398 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{common}[2022/11/27 Common Package Loader of LaTeX]
+
+% Etool box for options boolean.
+\RequirePackage{etoolbox}
+\newbool{tikz}
+\newbool{figure}
+\newbool{table}
+\newbool{code}
+\newbool{bib}
+\newbool{unit}
+\newbool{math}
+\newbool{chem}
+\newbool{qa}
+\newbool{boxedAnswer}
+\newbool{boxedQuestion}
+\newbool{numberedQuestion}
+\newbool{numberedAnswer}
+\newbool{coloredQuestion}
+\newbool{coloredAnswer}
+
+% Must keep the order of the following packages.
+\RequirePackage{xkeyval}
+\RequirePackage{xkvltxp}
+\RequirePackage{xifthen}
+\RequirePackage{xparse}
+\RequirePackage{expl3}
+\RequirePackage{iftex}
+
+% Boolean helper
+\newcommand{\@booloption}[2]{\ifstrequal{#1}{true}
+	{ \booltrue{#2} }
+	{ \ifstrequal{#1}{false}
+		{ \boolfalse{#2} }
+		{ \PackageError{common}{#1 for #2 is not a valid option} }
+	}}
+\newcommand{\@booltostr}[1]{ \ifbool{#1}{ true }{ false } }
+
+% Real options
+\DeclareOptionX{tikz}[true]{\@booloption{#1}{tikz}}
+\DeclareOptionX{figure}[true]{\@booloption{#1}{figure}}
+\DeclareOptionX{table}[true]{\@booloption{#1}{table}}
+\DeclareOptionX{code}[true]{\@booloption{#1}{code}}
+\DeclareOptionX{bib}[true]{\@booloption{#1}{bib}}
+\DeclareOptionX{unit}[true]{\@booloption{#1}{unit}}
+\DeclareOptionX{math}[true]{\@booloption{#1}{math}}
+\DeclareOptionX{chem}[true]{\@booloption{#1}{chem}}
+\DeclareOptionX{qa}[true]{\@booloption{#1}{qa}}
+\DeclareOptionX{boxedAnswer}[true]{\@booloption{#1}{boxedAnswer}}
+\DeclareOptionX{boxedQuestion}[true]{\@booloption{#1}{boxedQuestion}}
+\DeclareOptionX{numberedQuestion}[true]{\@booloption{#1}{numberedQuestion}}
+\DeclareOptionX{numberedAnswer}[true]{\@booloption{#1}{numberedAnswer}}
+\DeclareOptionX{coloredQuestion}[true]{\@booloption{#1}{coloredQuestion}}
+\DeclareOptionX{coloredAnswer}[true]{\@booloption{#1}{coloredAnswer}}
+\DeclareOptionX{pl}{\def\pl{#1}} \def\pl{python}
+\DeclareOptionX{linespace}{\def\linespace{#1}} \def\linespace{1.15}
+\ProcessOptionsX
+
+% ==================== Common ====================
+% theme color
+% ------------------------------
+\RequirePackage{xcolor}
+
+% Accent #38bdf8 (sky-400)
+\definecolor{primary}{HTML}{38bdf8}     % #38bdf8
+% Sky series
+\definecolor{sky-50}{HTML}{f0f9ff}  % #f0f9ff
+\definecolor{sky-100}{HTML}{e0f2fe} % #e0f2fe
+\definecolor{sky-200}{HTML}{bae6fd} % #bae6fd
+\definecolor{sky-300}{HTML}{7dd3fc} % #7dd3fc
+\definecolor{sky-400}{HTML}{38bdf8} % #38bdf8
+\definecolor{sky-500}{HTML}{0ea5e9} % #0ea5e9
+\definecolor{sky-600}{HTML}{0284c7} % #0284c7
+\definecolor{sky-700}{HTML}{0369a1} % #0369a1
+\definecolor{sky-800}{HTML}{075985} % #075985
+\definecolor{sky-900}{HTML}{0c4a6e} % #0c4a6e
+% Secondary #60a5fa (blue-400)
+\definecolor{secondary}{HTML}{60a5fa}
+% Blue series
+\definecolor{blue-50}{HTML}{eff6ff}    % #eff6ff
+\definecolor{blue-100}{HTML}{dbeafe}   % #dbeafe
+\definecolor{blue-200}{HTML}{bfdbfe}   % #bfdbfe
+\definecolor{blue-300}{HTML}{93c5fd}   % #93c5fd
+\definecolor{blue-400}{HTML}{60a5fa}   % #60a5fa
+\definecolor{blue-500}{HTML}{3b82f6}   % #3b82f6
+\definecolor{blue-600}{HTML}{2563eb}   % #2563eb
+\definecolor{blue-700}{HTML}{1d4ed8}   % #1d4ed8
+\definecolor{blue-800}{HTML}{1e40af}   % #1e40af
+\definecolor{blue-900}{HTML}{1e3a8a}   % #1e3a8a
+% Teritary #818cf8 (indigo-400)
+\definecolor{teritary}{HTML}{818cf8}
+% Indigo series
+\definecolor{indigo-50}{HTML}{f0f5ff}  % #f0f5ff
+\definecolor{indigo-100}{HTML}{e5edff} % #e5edff
+\definecolor{indigo-200}{HTML}{cddbfe} % #cddbfe
+\definecolor{indigo-300}{HTML}{b4c6fc} % #b4c6fc
+\definecolor{indigo-400}{HTML}{818cf8} % #818cf8
+\definecolor{indigo-500}{HTML}{6366f1} % #6366f1
+\definecolor{indigo-600}{HTML}{4f46e5} % #4f46e5
+\definecolor{indigo-700}{HTML}{4338ca} % #4338ca
+\definecolor{indigo-800}{HTML}{3730a3} % #3730a3
+\definecolor{indigo-900}{HTML}{312e81} % #312e81
+% #FFFFFF
+\definecolor{background}{RGB}{255,255,255}
+% ------------------------------
+
+% Right way of eg, ie, etc.
+% ------------------------------
+\RequirePackage{xspace}
+\DeclareRobustCommand\onedot{\futurelet\@let@token\@onedot}
+\def\@onedot{\ifx\@let@token.\else.\null\fi\xspace}
+
+\def\eg{\emph{e.g}\onedot} \def\Eg{\emph{E.g}\onedot}
+\def\ie{\emph{i.e}\onedot} \def\Ie{\emph{I.e}\onedot}
+\def\cf{\emph{c.f}\onedot} \def\Cf{\emph{C.f}\onedot}
+\def\etc{\emph{etc}\onedot} \def\vs{\emph{vs}\onedot}
+\def\wrt{w.r.t\onedot} \def\dof{d.o.f\onedot}
+\def\etal{\emph{et al}\onedot}
+% ------------------------------
+
+% highlight color
+% ------------------------------
+\RequirePackage{soul}
+\sethlcolor{sky-300}
+\renewcommand{\underline}[1]{\ul{#1}}
+% ------------------------------
+
+% references
+% ------------------------------
+\RequirePackage{hyperref}
+\providecommand*{\listingautorefname}{Listing}
+% ------------------------------
+
+% set linespacing
+% ------------------------------
+\RequirePackage{setspace}
+\setstretch{\linespace}
+% ------------------------------
+
+% microtype
+% ------------------------------
+\RequirePackage{microtype}
+% ------------------------------
+
+% list
+% ------------------------------
+\RequirePackage{enumitem}
+% ------------------------------
+
+\RequirePackage{graphicx}
+\RequirePackage{newfloat}
+\RequirePackage{subcaption}
+
+% ==================== Floats ====================
+
+% figure
+% ------------------------------
+\iffigure
+	\RequirePackage{wrapfig}
+\fi
+% ------------------------------
+
+% tikz & plot
+% ------------------------------
+\iftikz
+	\RequirePackage{tikz}
+	\usetikzlibrary{arrows.meta, calc, positioning}
+	\RequirePackage{pgfplots}
+	\pgfplotsset{compat=1.18}
+\fi
+% ------------------------------
+
+% table
+% ------------------------------
+\iftable
+	\RequirePackage{booktabs}
+	\RequirePackage{multirow}
+	\RequirePackage{longtable}
+	\RequirePackage{xltabular}
+	\RequirePackage{array}
+\fi
+% ------------------------------
+
+% ==================== Thanks ====================
+% icon
+% ------------------------------
+
+% default icon size
+\def\iconsize{1em}
+\def\@iconsize{\iconsize}
+
+% circle clip icon
+\def\clipicon{true}
+\newbool{@clipicon}
+\setbool{@clipicon}{true}
+
+% predefined icon
+\def\@icondirectory{C:/Users/yubo/Documents/projects/config/pkgs/tex/texmf/tex/latex/common/icon}
+\def\@icon@anish{anish.png}
+\def\@icon@yubo{yubo.png}
+\def\@icon@texnician{texnician.png}
+\def\@icon@csClub{cs-club.png}
+
+% fail back loading icon
+\newcommand{\@includeicon}[2]{\ifcsname @icon@#1 \endcsname \includegraphics[width=#1]{\@icondirectory \@icon@#2}%
+	\else \includegraphics[width=#1]{#2} \fi}
+
+% parse icon options
+\define@boolkey{icon}[default]{clip}{\ifthenelse{\equal{#1}{default}}%
+	{\@booloption{\clipicon}{@clipicon}}%
+	{\@booloption{#1}{@clipicon}}}
+\define@key{icon}{size}[]{\ifthenelse{\equal{#1}{}}{\def\@iconsize{\iconsize}}{\def\@iconsize{#1}}}
+
+% real icon command
+\NewDocumentCommand{\icon}{O{} m}{\setkeys{icon}{#1}%
+	\def\@icon{\@includeicon{\@iconsize}{#2}}%
+	\if@clipicon%
+		\@ifpackageloaded{tikz}%
+		{\hspace{-0.2em}\tikz[baseline]{\clip[inner xsep=0pt] (0, 4pt) circle (\@iconsize * 0.5); \node[inner xsep=0pt] at (0, 4pt) {\@icon};}}%
+		{\PackageWarning{common}{tikz is required for icon with clip option}\hspace{-1em}\@icon\hspace{-0.2em}}%
+	\else\hspace{-1em}\@icon\hspace{-0.2em}\fi}
+
+
+% fillers
+% ------------------------------
+\NewDocumentCommand{\tysm}{m O{Thank #1 for the inspiration, motivation, and support for this work.}}{#2}
+\NewDocumentCommand{\courtesy}{m O{This work is produced out of courtesy of #1.}}{#2}
+\NewDocumentCommand{\person}{O{} m}{\ifthenelse{\equal{#1}{}}{ #2 }{ \resizebox{\iconsize}{!}{#1} #2 }}
+
+
+% ==================== Common Science ====================
+% science --- cs/code
+% ------------------------------
+\ifcode
+	\usepackage[outputdir=build]{minted}
+	\renewenvironment{minted@colorbg}[1]{
+		\setlength{\fboxsep}{\z@}
+		\def\minted@bgcol{#1}
+		\vspace{1em}
+		\noindent
+		\begin{lrbox}{\minted@bgbox}
+			\begin{minipage}{\linewidth}}
+				{\end{minipage}
+		\end{lrbox}%
+		\colorbox{\minted@bgcol}{\usebox{\minted@bgbox}}\vspace{1em}}
+
+	\definecolor{bg}{HTML}{2e3440} % #2e3440
+	\renewcommand{\theFancyVerbLine}{\ttfamily
+		\textcolor{sky-500}{\oldstylenums{\arabic{FancyVerbLine}}}}
+	\setminted{linenos,
+		autogobble,
+		frame=lines,
+		tabsize=4,
+		breaklines,
+		breakanywhere,
+		% bgcolor=bg,
+		framesep=1em,
+		xleftmargin=1em,
+		xrightmargin=1em,
+		numbersep=2em}
+	\newmintinline[mono]{c}{}
+	\newminted[monos]{c}{}
+	% \RequirePackage[ruled]{algorithm2e}
+	\iftable%
+		\newcolumntype{C}{>{\ttfamily\arraybackslash}p}
+	\fi
+\fi
+% ------------------------------
+
+% science --- unit
+% ------------------------------
+\ifunit
+	\RequirePackage{siunitx}
+	\DeclareSIUnit\inch{in}
+	\DeclareSIUnit\foot{ft}
+	\DeclareSIUnit\pound{lb}
+	\DeclareSIUnit\degree{^\circ}
+\fi
+% ------------------------------
+
+% science --- chemistry
+% ------------------------------
+\ifchem
+	\RequirePackage[version=4]{mhchem}
+	\RequirePackage{chemfig}
+\fi
+% ------------------------------
+
+% science --- math
+% ------------------------------
+\ifmath
+	\RequirePackage{amsmath}
+	\RequirePackage{amssymb}
+	\RequirePackage{amsthm}
+\fi
+% ------------------------------
+
+% ==================== Common School ====================
+% school --- question and answer
+% ------------------------------
+
+
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\@ifDark}{mmm}
+{
+	\if_dark:eTF { #1 } {#2} {#3}
+}
+\NewExpandableDocumentCommand{\@autoTextColor}{m}
+{
+	\@ifDark{#1}{\color{white}}{\color{black}}
+}
+\fp_new:N \l_bright_fp
+\prg_new_conditional:Nnn \if_dark:n {p,T,F,TF}
+{
+	\convertcolorspec{named}{#1}{gray}\gray
+	\fp_set:Nn \l_bright_fp { \gray }
+	\fp_compare:nTF { \l_bright_fp  <  0.5 }
+	{ \prg_return_true: }
+	{ \prg_return_false: }
+}
+\prg_generate_conditional_variant:Nnn \if_dark:n {e} {p,T,F,TF}
+\ExplSyntaxOff
+
+\ifqa
+	\RequirePackage[most]{tcolorbox}
+	\newcommand{\@colonify}[2]{\ifthenelse{\equal{#2}{}}{\textbf{#1}\par}{\textbf{#1:} #2}}
+
+	\define@boolkey{question}[true]{boxed}{\def\q@boxed{#1}}
+	\define@boolkey{answer}[true]{boxed}{\def\a@boxed{#1}}
+	\define@boolkey{question}[true]{numbered}{\def\q@numbered{#1}}
+	\define@boolkey{answer}[true]{numbered}{\def\a@numbered{#1}}
+	\define@key{question}{title}{\def\q@title{#1}}
+	\define@key{answer}{title}{\def\a@title{#1}}
+
+	\newcommand{\@setdefault}{
+		\ifboxedQuestion \def\q@boxed{true} \else \def\q@boxed{false} \fi
+		\ifboxedAnswer \def\a@boxed{true} \else \def\a@boxed{false} \fi
+		\ifnumberedQuestion \def\q@numbered{true} \else \def\q@numbered{false} \fi
+		\ifnumberedAnswer \def\a@numbered{true} \else \def\a@numbered{false} \fi
+		\def \q@title{}
+		\def \a@title{}
+	}
+
+	\newcounter{question}
+	\newcounter{answer}
+
+	\newenvironment{question}[1][]{
+		\@setdefault
+		\setkeys{question}{#1}
+		% answer number within question
+		\setcounter{answer}{0}
+
+		\ifthenelse{\equal{\q@numbered}{true}}{
+			\stepcounter{question}
+			\def\q@t{\@colonify{Question \arabic{question}{\q@title}}}
+		}{
+			\def\q@t{\@colonify{Question}{\q@title}}
+		}
+
+		\ifthenelse{\equal{\q@boxed}{true}}{
+			\begin{tcolorbox}[enhanced, breakable, sharp corners,boxrule=0.4pt,colback=background,colframe=primary,colbacktitle=sky-50,fonttitle=\bfseries\@autoTextColor{primary},title=\q@t]
+				}{ \q@t }
+				}{
+				\ifthenelse{\equal{\q@boxed}{true}}{ \end{tcolorbox} }{}
+	}
+	\newenvironment{answer}[1][]{
+		\@setdefault
+		\setkeys{answer}{#1}
+
+		\ifthenelse{\equal{\a@numbered}{true}}{
+			\stepcounter{answer}
+			\def\a@t{\@colonify{Answer \arabic{answer}{\a@title}}}
+		}{
+			\def\a@t{\@colonify{Answer}{\a@title}}
+		}
+
+		\ifthenelse{\equal{\a@boxed}{true}}{
+			\begin{tcolorbox}[enhanced, breakable, sharp corners,boxrule=0.4pt,colback=background,colframe=secondary,colbacktitle=indigo-50,fonttitle=\bfseries\@autoTextColor{secondary},title=\a@t]
+				}{ \a@t }
+				}{
+				\ifthenelse{\equal{\a@boxed}{true}}{ \end{tcolorbox} }{}
+	}
+	\NewDocumentCommand{\resetQuestion}{}
+	{
+		\setcounter{question}{0}
+		\setcounter{answer}{0}
+	}
+\fi
+
+% ------------------------------
+
+% school --- bibliography(apa)
+% ------------------------------
+\ifbib
+	\RequirePackage[style=apa,backend=biber,sorting=none,doi=false,isbn=false,url=false,hyperref=false]{biblatex}
+	\addbibresource{cite.bib}
+\fi
+% ------------------------------

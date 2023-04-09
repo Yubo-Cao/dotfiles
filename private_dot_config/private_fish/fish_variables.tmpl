@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
-SETUVAR --export GITHUB_PAT:{{.github_pat}}
+SETUVAR --export GITHUB_PAT:{{ (keepassxc "github").Password }}
 SETUVAR --export GLFW_IM_MODULE:ibus
 SETUVAR --export GTK_IM_MODULE:fcitx
 SETUVAR --export GTK_THEME:Materia\x3alight

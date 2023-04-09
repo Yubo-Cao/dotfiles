@@ -37,7 +37,7 @@ function set_environment
     set -Ux EDITOR nvim
 
     # Github
-    set -Ux GITHUB_PAT {{ .github_pat }}
+    set -Ux GITHUB_PAT {{ (keepassxc "github").Password }}
 
     # Pyenv
     set -Ux PYENV_ROOT $HOME/.pyenv

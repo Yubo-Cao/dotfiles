@@ -1,0 +1,9 @@
+primary = "blue"
+secondary = "indigo"
+tertiary = "violet"
+dark = "slate"
+
+background = 50
+border = 200
+title = 800
+text = 600

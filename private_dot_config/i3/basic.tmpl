@@ -22,8 +22,8 @@ exec --no-startup-id fcitx5
 ## eww
 # exec_always --no-startup-id eww daemon
 # exec_always --no-startup-id eww open bar
-# polybar
-exec_always --no-startup-id python ~/.config/polybar/launch.py
+# polybar (notice hardware udev has it as hook)
+# exec_always --no-startup-id python ~/.config/polybar/launch.py
 for_window [instance="polybar"] floating enable, border none, sticky enable
 # redshift
 exec --no-startup-id redshift -t 5000:3600 -l 33.956215:-83.987961

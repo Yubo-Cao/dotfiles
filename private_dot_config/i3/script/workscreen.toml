@@ -1,11 +1,13 @@
 [general]
 auto_disable = true
 init = true
-hooks = ["python ~/.config/polybar/launch.py"]
+hooks = ["python ~/.config/polybar/launch.py", 
+         "nitrogen --restore --force-setter=xinerama",
+         "picom --backend glx"]
 delay = 2
 
 [eDP-1]
-xrandr = ["--dpi", "226"]
+xrandr = ["--dpi", "226", "--scale"]
 workspaces = ["1"]
 
 [HDMI-1]

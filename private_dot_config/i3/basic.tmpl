@@ -9,7 +9,7 @@ client.unfocused {{.web.dark_300}} {{.web.background_dark}} {{.web.text_dark}} {
 client.urgent    {{.web.red_main}} {{.web.red_50}} {{.web.red_600}} {{.web.red_800}} {{.web.red_400}}
 # border
 border_radius 8
-for_window [class=".*"] border pixel 2
+for_window [class=".*"] border pixel 0
 
 gaps outer 2
 gaps inner 4
@@ -18,7 +18,7 @@ gaps inner 4
 # lock screen
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # fcitx
-exec --no-startup-id fcitx5
+exec --no-startup-id bash -c "fcitx5 > /tmp/fcitx.log 2>&1"
 ## eww
 # exec_always --no-startup-id eww daemon
 # exec_always --no-startup-id eww open bar
@@ -26,8 +26,10 @@ exec --no-startup-id fcitx5
 # exec_always --no-startup-id python ~/.config/polybar/launch.py
 for_window [instance="polybar"] floating enable, border none, sticky enable
 # redshift
-exec --no-startup-id redshift -t 5000:3600 -l 33.956215:-83.987961
+exec --no-startup-id bash -c "redshift -t 5000:3600 -l 33.956215:-83.987961 > /tmp/redshift.log 2>&1"
 # autotiling
 exec --no-startup-id python ~/.config/i3/script/autotiling.py
 # nitrogen (notice hardware udev has it as hook)
 #exec --no-startup-id nitrogen --restore --force-setter=xinerama
+# xborders
+exec --no-startup-id bash -c "xborders -c ~/.config/xborders/config.json > /tmp/xborders.log 2>&1"

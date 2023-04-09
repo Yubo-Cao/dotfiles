@@ -8,7 +8,7 @@ delay = 0.5
 hook_delay = 0.5
 
 [eDP-1]
-xrandr = ["--dpi", "226", "--scale"]
+xrandr = ["--dpi", "226"]
 workspaces = ["1"]
 
 [HDMI-1]

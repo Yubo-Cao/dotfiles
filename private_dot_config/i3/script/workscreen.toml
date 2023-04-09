@@ -1,0 +1,13 @@
+[general]
+auto_disable = true
+init = true
+hooks = ["python ~/.config/polybar/launch.py"]
+delay = 2
+
+[eDP-1]
+xrandr = ["--dpi", "226"]
+workspaces = ["1"]
+
+[HDMI-1]
+xrandr = ["--dpi", "96", "--scale", "1.5x1.5", "--right-of", "eDP-1"]
+workspaces = ["2"]

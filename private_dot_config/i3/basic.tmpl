@@ -23,9 +23,11 @@ exec --no-startup-id fcitx5
 # exec_always --no-startup-id eww daemon
 # exec_always --no-startup-id eww open bar
 # polybar
-exec_always python ~/.config/polybar/launch.py
+exec_always --no-startup-id python ~/.config/polybar/launch.py
 for_window [instance="polybar"] floating enable, border none, sticky enable
 # redshift
-exec redshift -t 5000:3600 -l 33.956215:-83.987961
+exec --no-startup-id redshift -t 5000:3600 -l 33.956215:-83.987961
 # autotiling
-exec python ~/.config/i3/script/autotiling.py
+exec --no-startup-id python ~/.config/i3/script/autotiling.py
+# nitrogen
+exec nitrogen --restore --force-setter=xinerama

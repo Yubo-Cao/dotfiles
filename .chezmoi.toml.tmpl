@@ -1,4 +1,3 @@
-{{- $pat := promptString "Github Personal Access Token" -}}
 [edit]
 command = "nvim"
 
@@ -10,7 +9,6 @@ args = ["-d", "{{"{{"}} .Destination {{"}}"}}", "{{"{{"}} .Source {{"}}"}}"]
 database = "/home/yubo/.config/secret.kdbx"
 
 [data]
-github_pat = {{ $pat | quote }}
 email = "cao2006721@gmail.com"
 name = "Yubo Cao"
 code_font = "FiraCode NF"

@@ -3,7 +3,7 @@ auto_disable = true
 init = true
 hooks = ["python ~/.config/polybar/launch.py", 
          "nitrogen --restore --force-setter=xinerama",
-         "picom --backend glx"]
+         "picom --backend egl"]
 delay = 2
 
 [eDP-1]

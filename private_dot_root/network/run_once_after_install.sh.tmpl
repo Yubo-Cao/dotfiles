@@ -1,0 +1,52 @@
+#!/usr/bin/bash
+
+source "$CHEZMOI_SOURCE_DIR/common.sh"
+
+install_networkmanager() {
+    install NetworkManager \
+        wpa_supplicant \
+        networkmanager \
+        network-manager-applet
+
+    info "Enabling network services"
+    sudo systemctl enable --now dhcpcd
+    sudo systemctl enable --now NetworkManager
+}
+
+install_nmconnection() {
+    local ssid="$1"
+    info "Installing $ssid connection"
+    local src="$HOME/.root/network/$ssid"
+    local dst="/etc/NetworkManager/system-connections/$ssid.nmconnection"
+    if [ -f "$dst" ]; then
+        if diff "$src" "$dst" > /dev/null; then
+            info "$ssid connection already installed"
+            exit 0
+        else
+            warn "$ssid connection already exists but is different"
+        fi
+    fi
+    sudo cp "$src" "$dst"
+    sudo chown root:root "$dst"
+    sudo chmod 600 "$dst"
+}
+
+scan_and_connect() {
+    declare -a networks
+    networks=(GCPS-Mobile ATTJWD)
+    for var in $(nmcli --mode multiline  device wifi list | grep "^SSID" | awk '{ print $2 }' | uniq)
+    do
+        if [[ " ${networks[@]} " =~ " $var " ]]; then
+            info "Connecting to $var"
+            sudo nmcli connection up "$var"
+            return 0
+        fi
+    done
+    warn "Can't find any of the networks: ${networks[@]}"
+    return 1
+}
+
+install_networkmanager
+install_nmconnection "GCPS-Mobile"
+install_nmconnection "ATTJWD"
+scan_and_connect

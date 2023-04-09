@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+source "$CHEZMOI_SOURCE_DIR/common.sh"
+
+install_bluetooth() {
+    install "Bluetooth" \
+        bluez bluez-utils
+    info "Setup bluetooth service"
+    sudo modprobe btusb
+    sudo rfkill unblock bluetooth
+    sudo systemctl enable --now bluetooth
+}
+
+install_bluetooth

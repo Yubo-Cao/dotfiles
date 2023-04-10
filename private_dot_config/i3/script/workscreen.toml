@@ -1,9 +1,11 @@
 [general]
 auto_disable = true
 init = true
-hooks = ["python ~/.config/polybar/launch.py", 
-         "nitrogen --restore --force-setter=xinerama",
-         "picom --blur-method dual_kawase --blur-strength 7"]
+hooks = [
+    "nitrogen --restore --force-setter=xinerama",
+    "python ~/.config/polybar/launch.py", 
+     "picom --blur-method dual_kawase --blur-strength 7"
+]
 delay = 0.5
 hook_delay = 0.5
 

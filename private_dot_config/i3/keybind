@@ -34,7 +34,13 @@ bindsym $mod+Shift+c reload
 # restart i3 
 bindsym $mod+Shift+r restart
 # exit i3 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+mode exit {
+    bindsym Return exit
+    bindsym Escape exec bash -c "killall i3-nagbar && i3-msg mode 'default'"
+    bindsym $mod+Shift+e exec bash -c "killall i3-nagbar && i3-msg mode 'default'"
+}
+
+bindsym $mod+Shift+e exec bash ~/.config/i3/script/exit.sh 
 
 
 ## XF86

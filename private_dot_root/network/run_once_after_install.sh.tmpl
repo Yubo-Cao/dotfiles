@@ -47,6 +47,9 @@ scan_and_connect() {
 }
 
 install_networkmanager
+# secret.kdbx hash: {{ include "private_dot_config/private_secret.kdbx" | sha256sum }}
+# GCPS-Mobile.conf hash: {{ include "private_dot_root/network/GCPS-Mobile.tmpl" | sha256sum }}
 install_nmconnection "GCPS-Mobile"
+# ATTJWD.conf hash: {{ include "private_dot_root/network/ATTJWD.tmpl" | sha256sum }}
 install_nmconnection "ATTJWD"
 scan_and_connect

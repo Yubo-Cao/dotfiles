@@ -1,0 +1,59 @@
+[global]
+# multiple monitors
+follow = mouse
+scale = 0
+
+# position
+origin = top-right
+offset = 10 x 10
+
+# styling
+corner_radius = 4
+padding = 8
+font = {{.ui_font}}
+format = "<span font='13'><b>%s</b></span>\n<span font='9'>%b</span>"
+frame_color = "{{.web.dark_200}}"
+frame_width = 2
+text_icon_padding = 8
+
+# separator between notifications
+separator_color = "{{.web.dark_50}}"
+separator_height = 4
+
+# history
+history = ctrl+grave
+history_length = 10
+horizontal_padding = 12
+
+# icon
+icon_position = left
+icon_theme= "Papirus-Light, Papirus, Adwaita"
+icon_path = "/usr/share/icons/Papirus-Light/48x48/status"
+max_icon_size = 36
+line_height = 2
+
+# behavior 
+markup = full
+show_age_threshold = 30
+sort = yes
+stack_duplicates = true
+word_wrap = yes
+
+[urgency_low]
+background = "{{.web.background_dark}}"
+foreground = "{{.web.text_dark}}"
+format = "<span foreground='{{.web.text_dark}}' font='13'><b>%s</b></span>\n<span foreground='{{.web.text_dark}}' font='9'>%b</span>"
+timeout = 5
+
+[urgency_normal]
+background = "{{.web.dark_100}}"
+foreground = "{{.web.title_dark}}"
+format = "<span foreground='{{.web.primary_700}}' font='13'><b>%s</b></span>\n<span foreground='{{.web.text_dark}}' font='9'>%b</span>"
+timeout = 5
+
+[urgency_critical]
+background = "{{.web.red_50}}"
+foreground = "{{.web.red_950}}"
+format = "<span foreground='{{.web.red_950}}' font='13'><b>%s</b></span>\n<span foreground='{{.web.text_dark}}' font='9'>%b</span>"
+icon = "/usr/share/icons/Papirus-Light/48x48/status/dialog-error.svg"
+timeout = 0

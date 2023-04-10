@@ -32,24 +32,32 @@ install_nmconnection() {
 }
 
 scan_and_connect() {
-    declare -a networks
-    networks=(GCPS-Mobile ATTJWD)
-    for var in $(nmcli --mode multiline  device wifi list | grep "^SSID" | awk '{ print $2 }' | uniq)
-    do
-        if [[ " ${networks[@]} " =~ " $var " ]]; then
-            info "Connecting to $var"
-            sudo nmcli connection up "$var"
+    declare -A networks=(
+        ["School"]="GCPS-Mobile"
+        ["Home"]="ATTJWD"
+        ["Hotspot"]="OnePlus 7T"
+    )
+    for connection in "${!networks[@]}"; do
+        if nmcli connection show --active | grep -q "$connection"; then
+            info "$connection already active"
+            return 0
+        fi
+        if nmcli device wifi list | grep -q "${networks[$connection]}"; then
+            info "Activating $connection"
+            sudo nmcli connection up "${networks[$connection]}"
             return 0
         fi
     done
-    warn "Can't find any of the networks: ${networks[@]}"
+    warn "Can't find any of the networks: ${!networks[@]}"
     return 1
 }
 
 install_networkmanager
 # secret.kdbx hash: {{ include "private_dot_config/private_secret.kdbx" | sha256sum }}
-# GCPS-Mobile.conf hash: {{ include "private_dot_root/network/GCPS-Mobile.tmpl" | sha256sum }}
-install_nmconnection "GCPS-Mobile"
-# ATTJWD.conf hash: {{ include "private_dot_root/network/ATTJWD.tmpl" | sha256sum }}
-install_nmconnection "ATTJWD"
+# School.conf hash: {{ include "private_dot_root/network/School.tmpl" | sha256sum }}
+install_nmconnection "School"
+# Home.conf hash: {{ include "private_dot_root/network/Home.tmpl" | sha256sum }}
+install_nmconnection "Home"
+# Hotspot.conf hash: {{ include "private_dot_root/network/Hotspot.tmpl" | sha256sum }}
+install_nmconnection "Hotspot"
 scan_and_connect

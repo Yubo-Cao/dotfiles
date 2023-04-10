@@ -1,36 +1,32 @@
 #!/usr/bin/env bash
 
-BLANK='{{.web.background_dark}}FF'
-CLEAR='{{.web.dark_100}}FF'
-DEFAULT='{{web.primary_main}}cc'
-TEXT='{{.web.primary_text}}ee'
-WRONG='{{.web.red_800}}bb'
-VERIFYING='{{.web.secondary_main}}bb'
-
 i3lock \
-    --insidever-color=$CLEAR \
-    --ringver-color=$VERIFYING \
+    --insidever-color={{.web.secondary_50}}FF \
+    --ringver-color={{.web.secondary_main}}FF \
     \
-    --insidewrong-color=$CLEAR \
-    --ringwrong-color=$WRONG \
+    --insidewrong-color={{.web.red_50}}FF \
+    --ringwrong-color={{.web.red_main}}FF \
     \
-    --inside-color=$BLANK \
-    --ring-color=$DEFAULT \
-    --line-color=$BLANK \
-    --separator-color=$DEFAULT \
+    --inside-color={{.web.background_dark}}FF \
+    --ring-color={{.web.dark_main}}FF \
+    --line-color={{.web.background_dark}}FF \
+    --separator-color={{.web.dark_main}}FF \
     \
-    --verif-color=$TEXT \
-    --wrong-color=$TEXT \
-    --time-color=$TEXT \
-    --date-color=$TEXT \
-    --layout-color=$TEXT \
-    --keyhl-color=$WRONG \
-    --bshl-color=$WRONG \
+    --verif-color={{.web.title_dark}}FF \
+    --wrong-color={{.web.red_800}}FF \
+    --time-color={{.web.text_dark}}FF \
+    --date-color={{.web.title_dark}}FF \
+    --layout-color={{.web.text_dark}}FF \
+    --keyhl-color={{.web.primary_main}}FF \
+    --bshl-color={{.web.tertiary_main}}FF \
     \
-    --screen 1 \
-    --blur 5 \
+    --time-font={{.ui_font}} \
+    --date-font={{.ui_font}} \
+    --layout-font={{.ui_font}} \
+    --verif-font={{.ui_font}} \
+    --wrong-font={{.ui_font}} \
+    --greeter-font={{.ui_font}} \
+    \
+    --image="$HOME/.config/nitrogen/wallpaper.png" --fill \
     --clock \
-    --indicator \
-    --time-str="%H:%M:%S" \
-    --date-str="%A, %Y-%m-%d" \
-    --keylayout 1 \
+    --indicator

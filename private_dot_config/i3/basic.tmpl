@@ -15,8 +15,8 @@ gaps outer 0
 gaps inner 8
 
 ## Daemon
-# lock screen
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# lock screen, run ~/.config/i3lock/lock.sh
+exec --no-startup-id xss-lock --transfer-sleep-lock -- bash "$HOME/.config/i3lock/lock.sh"
 # fcitx
 exec --no-startup-id bash -c "fcitx5 > /tmp/fcitx.log 2>&1"
 ## eww

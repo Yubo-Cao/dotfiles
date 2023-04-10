@@ -27,7 +27,7 @@ fi
 
 install i3 \
     i3-gaps-rounded-git \
-    i3lock xss-lock
+    i3lock-color-git xss-lock
 
 install "i3 utilies" \
     xdg-utils gnome-keyring \

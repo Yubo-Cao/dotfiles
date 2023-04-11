@@ -3,13 +3,6 @@ source "$CHEZMOI_SOURCE_DIR/common.sh"
 
 info "Setting up i3"
 
-install fonts \
-    noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
-    ttf-firacode-nerd \
-    inter-font \
-    ttf-material-design-icons-webfont \
-    ttf-sarasa-gothic
-
 install pipewire \
     pipewire wireplumber pipewire-audio pipewire-jack pipewire-alsa pipewire-pulse
 
@@ -35,7 +28,8 @@ install "i3 utilies" \
     xdg-desktop-portal xdg-desktop-portal-kde \
     xclip xsel xrandr \
     xborders-git \
-    dunst
+    dunst \
+    rofi libqalculate
 
 install "basic software" \
     gwenview \

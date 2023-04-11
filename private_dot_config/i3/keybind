@@ -3,7 +3,11 @@
 # terminal
 bindsym $mod+Return exec kitty
 # rofi
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec rofi -show drun
+# rofi-calc
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
+# rofi-window
+bindsym $mod+q exec rofi -show window
 # neovide
 bindsym $mod+n exec neovide
 # thunar

@@ -36,9 +36,6 @@ function set_environment
     # Neovim
     set -Ux EDITOR nvim
 
-    # Github
-    set -Ux GH_TOKEN {{ (keepassxc "github").Password }}
-
     # Pyenv
     set -Ux PYENV_ROOT $HOME/.pyenv
     set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths

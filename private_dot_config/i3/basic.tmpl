@@ -37,6 +37,8 @@ exec --no-startup-id python ~/.config/i3/script/xborders.py --config ~/.config/x
 exec --no-startup-id polkit-dumb-agent
 # dunst
 exec --no-startup-id dunst
+# cassowary
+exec --no-startup-id bash -c "python -m cassowary -bc > /tmp/cassowary.log 2>&1"
 
 ## Window rules
 # floating

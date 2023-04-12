@@ -45,14 +45,25 @@ function set_environment
     set -Ux XDG_SESSION_DESKTOP i3 
 
     # texlive
-    if not contains "/usr/local/texlive/2023/bin/x86_64-linux" $PATH
-        fish_add_path /usr/local/texlive/2023/bin/x86_64-linux
+    set -l texlive /usr/local/texlive/2023/bin/x86_64-linux
+    if not contains "$texlive" $PATH
+        fish_add_path "$texlive"
     end
-    if not contains "/usr/local/texlive/2023/texmf-dist/doc/info" $INFOPATH
+    set -l texlive /usr/local/texlive/2023/texmf-dist/doc/info
+    if not contains "$texlive" $INFOPATH
         if not set -q INFOPATH
-            set -U INFOPATH
+            set -Ux INFOPATH
         end
-        set -Uxa INFOPATH /usr/local/texlive/2023/texmf-dist/doc/info
+        set -Uxa INFOPATH "$texlive"
+    end
+    # manpath
+    set -l exist (manpath -q | string split ':');
+    set -l texlive /usr/local/texlive/2023/texmf-dist/doc/man
+    if not contains "$texlive" $exist
+        if not set -q MANPATH
+            set -Ux MANPATH $exist
+        end
+        set -Uxa MANPATH "$texlive"
     end
 end
 
@@ -70,6 +81,10 @@ end
 
 function icat
     kitty +kitten icat $argv
+end
+
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
 end
 
 unset_wayland_environment

@@ -6,7 +6,7 @@ info "Install NVIDIA"
 install NVIDIA \
     nvidia-dkms nvidia-utils
 install "CUDA" \
-    cuda intel-compute-runtime
+    cuda 
 install "Optimus manager" \
     optimus-manager-git \
     optimus-manager-qt-git
@@ -25,3 +25,11 @@ else
     sudo cp "$src" "$dst"
 fi
 
+install "ACPI" \
+    acpid
+sudo systemctl enable acpid
+
+install "Intel" \
+    xf86-video-intel \
+    intel-media-driver \
+    intel-compute-runtime

@@ -29,7 +29,7 @@ install "i3 utilies" \
     xclip xsel xrandr \
     xborders-git \
     dunst \
-    rofi libqalculate
+    rofi libqalculate rofi-calc
 
 install "basic software" \
     gwenview \

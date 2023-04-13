@@ -30,8 +30,14 @@ function set_environment
     set -Ux SDL_IM_MODULE fcitx
     set -Ux GLFW_IM_MODULE ibus
 
+    # Screen
+    set -Ux QT_SCREEN_SCALE_FACTORS "eDP-1=1.5;HDMI-1=1.0;DP-1=1.0;DP-2=1.0;"
+    set -Ux QT_AUTO_SCREEN_SCALE_FACTOR 0
+
     # Theme
     set -Ux QT_QPA_PLATFORMTHEME qt5ct
+    set -Uax GTK2_RC_FILES /etc/gtk-2.0/gtkrc "$HOME/.gtkrc-2.0" "$HOME/.config/gtkrc-2.0"
+    set -Uax GTK_RC_FILES /etc/gtk/gtkrc "$HOME/.gtkrc" "$HOME/.config/gtkrc"
 
     # Neovim
     set -Ux EDITOR nvim
@@ -56,7 +62,6 @@ function set_environment
         end
         set -Uxa INFOPATH "$texlive"
     end
-    # manpath
     set -l exist (manpath -q | string split ':');
     set -l texlive /usr/local/texlive/2023/texmf-dist/doc/man
     if not contains "$texlive" $exist
@@ -64,6 +69,12 @@ function set_environment
             set -Ux MANPATH $exist
         end
         set -Uxa MANPATH "$texlive"
+    end
+
+    # pnpm
+    set -gx PNPM_HOME "$HOME/.local/share/pnpm"
+    if not contains "$PNPM_HOME" $PATH
+        fish_add_path "$PNPM_HOME"
     end
 end
 
@@ -89,9 +100,6 @@ end
 
 unset_wayland_environment
 set_environment
-{{- if .wayland }}
-set_wayland_environment
-{{- end }}
 
 if status is-interactive
 end

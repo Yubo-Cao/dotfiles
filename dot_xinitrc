@@ -35,4 +35,4 @@ fi
 xset dpms 180 `# 3 min turn off monitor` &
 xrdb -load ~/.Xresources &
 prime-offload &
-i3
+bspwm

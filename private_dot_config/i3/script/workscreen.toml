@@ -4,9 +4,8 @@ init = true
 hooks = [
     "nitrogen --restore --force-setter=xinerama",
     "python ~/.config/polybar/launch.py", 
-    "picom --blur-method dual_kawase --blur-strength 7",
+    # "picom --blur-method dual_kawase --blur-strength 7",
     "python ~/.config/i3/script/xborders.py --config ~/.config/xborders/config.json"
-
 ]
 delay = 0.5
 hook_delay = 0.5
@@ -16,5 +15,5 @@ xrandr = ["--dpi", "226"]
 workspaces = ["1"]
 
 [HDMI-1]
-xrandr = ["--dpi", "96", "--scale", "1.5x1.5", "--right-of", "eDP-1"]
+xrandr = ["--dpi", "92", "--scale", "1.5x1.5", "--right-of", "eDP-1"]
 workspaces = ["2"]

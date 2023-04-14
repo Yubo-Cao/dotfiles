@@ -19,15 +19,15 @@ fi
 
 
 install i3 \
-    i3-gaps-rounded-git \
-    i3lock-color-git xss-lock
+    i3-wm \
+    i3lock-color-git xss-lock \
+    xorg-xinit
 
 install "i3 utilies" \
     xdg-utils gnome-keyring \
     polkit-dump-agent xorg-xhost \
     xdg-desktop-portal xdg-desktop-portal-kde \
     xclip xsel xrandr \
-    xborders-git \
     dunst \
     rofi libqalculate rofi-calc
 

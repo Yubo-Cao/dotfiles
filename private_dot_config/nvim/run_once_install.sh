@@ -4,10 +4,12 @@ source "$CHEZMOI_SOURCE_DIR/common.sh"
 install "Neovim" \
     neovim \
     neovide
-
+# Packer
+git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 # LSP
 install "LSP" \
-    nodejs rust_analyzer
+    nodejs npm rust_analyzer
 info "Install TS language server"
 sudo npm install -g typescript typescript-language-server
 info "Install Python language server"

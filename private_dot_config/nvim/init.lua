@@ -1,6 +1,5 @@
-require('plugin')
+require('plugin') -- Common
 
--- Common
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true

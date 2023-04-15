@@ -6,7 +6,7 @@ install_networkmanager() {
     install NetworkManager \
         wpa_supplicant \
         networkmanager \
-        network-manager-applet
+        dhcpcd
 
     info "Enabling network services"
     sudo systemctl enable --now dhcpcd

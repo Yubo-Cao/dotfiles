@@ -8,7 +8,7 @@ client.focused   {{.web.primary_600}} {{.web.background_primary}} {{.web.text_pr
 client.unfocused {{.web.dark_300}} {{.web.background_dark}} {{.web.text_dark}} {{.web.dark_main}} {{.web.dark_400}}
 client.urgent    {{.web.red_main}} {{.web.red_50}} {{.web.red_600}} {{.web.red_800}} {{.web.red_400}}
 # border
-border_radius 8
+# border_radius 8
 for_window [class=".*"] border pixel 0
 
 gaps outer 0
@@ -26,7 +26,7 @@ exec --no-startup-id bash -c "fcitx5 > /tmp/fcitx.log 2>&1"
 # exec_always --no-startup-id python ~/.config/polybar/launch.py
 for_window [instance="polybar"] floating enable, border none, sticky enable
 # redshift
-exec --no-startup-id bash -c "redshift -t 5000:3600 -l 33.956215:-83.987961 > /tmp/redshift.log 2>&1"
+exec --no-startup-id bash -c "redshift -t 5700:3600 -l 33.956215:-83.987961 > /tmp/redshift.log 2>&1"
 # autotiling
 exec --no-startup-id python ~/.config/i3/script/autotiling.py
 # nitrogen (notice hardware udev has it as hook)

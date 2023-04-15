@@ -324,8 +324,8 @@ label-unmounted = " %mountpoint%: not mounted"
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
-[module/bspwm]
-type = internal/bspwm
+[module/workspaces]
+type = internal/xworkspaces
 
 ; Only show workspaces defined on the same output as the bar
 pin-workspaces = true
@@ -385,11 +385,11 @@ label-mode-background = {{.web.primary_main}}
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-focused = %index%
-label-focused-foreground = #ffffff
-label-focused-background = ${color.primary}
-label-focused-underline = ${color.primary}
-label-focused-padding = 3
+label-active = %index%
+label-active-foreground = {{.web.text_primary}}
+label-active-background = {{.web.background_primary}}
+label-active-underline = {{.web.primary_main}}
+label-active-padding = 3
 
 ; Available tokens:
 ;   %name%
@@ -397,8 +397,8 @@ label-focused-padding = 3
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-unfocused = %index%
-label-unfocused-padding = 3
+label-occupied = %index%
+label-occupied-padding = 3
 
 ; Available tokens:
 ;   %name%
@@ -417,7 +417,7 @@ label-visible-padding = 3
 ;   %output%
 ; Default: %icon%  %name%
 label-urgent = %index%
-label-urgent-foreground = {{.web.background_dark}}
+label-urgent-foreground = {{.web.text_secondary}}
 label-urgent-background = {{.web.background_secondary}}
 label-urgent-padding = 3
 
@@ -425,6 +425,17 @@ label-urgent-padding = 3
 label-separator = |
 label-separator-padding = 1
 label-separator-foreground = {{.web.border_secondary}}
+
+;; _-_-_
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+format-foreground = {{.web.text_dark}}
+format-padding = 4
+label = %title%
+label-maxlen = 50
+label-empty = Empty
+label-empty-foreground = {{.web.dark_300}}
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 

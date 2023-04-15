@@ -21,7 +21,7 @@ super + n
 
 # file manager
 super + x
-    thunar
+    nautilus
 
 # browser
 super + p

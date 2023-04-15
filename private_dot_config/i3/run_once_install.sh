@@ -29,6 +29,7 @@ install "i3 utilies" \
     xdg-desktop-portal xdg-desktop-portal-kde \
     xclip xsel xrandr \
     dunst \
+    xorg-xinput \
     rofi libqalculate rofi-calc
 
 install "basic software" \

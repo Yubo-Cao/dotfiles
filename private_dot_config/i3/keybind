@@ -10,8 +10,8 @@ bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
 bindsym $mod+q exec rofi -show window
 # neovide
 bindsym $mod+n exec neovide
-# thunar
-bindsym $mod+x exec thunar
+# nautilus
+bindsym $mod+x exec nautilus
 # flameshot
 bindsym F1 --release exec flameshot gui
 # edge

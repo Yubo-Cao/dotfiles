@@ -11,7 +11,8 @@ info "Install matter"
 sudo python "$HOME/.root/grub/matter/matter.py" \
         --fontname 'Inter Regular' \
         --fontfile /usr/share/fonts/inter/Inter-Regular.ttf \
-        --icons arch _ _ _ folder \
+        --icons arch folder arch arch arch arch microsoft-windows cog \
         --highlight '{{.hex.text_primary}}' \
         --foreground '{{.hex.text_dark}}' \
-        --background '{{.hex.background_dark}}'
+        --background '{{.hex.background_dark}}' \
+        --iconcolor '{{.hex.dark_400}}'

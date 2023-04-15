@@ -325,7 +325,7 @@ label-unmounted = " %mountpoint%: not mounted"
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 [module/workspaces]
-type = internal/xworkspaces
+type = internal/i3
 
 ; Only show workspaces defined on the same output as the bar
 pin-workspaces = true
@@ -385,11 +385,11 @@ label-mode-background = {{.web.primary_main}}
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-active = %index%
-label-active-foreground = {{.web.text_primary}}
-label-active-background = {{.web.background_primary}}
-label-active-underline = {{.web.primary_main}}
-label-active-padding = 3
+label-focused = %index%
+label-focused-foreground = {{.web.text_primary}}
+label-focused-background = {{.web.background_primary}}
+label-focused-underline = {{.web.primary_main}}
+label-focused-padding = 3
 
 ; Available tokens:
 ;   %name%
@@ -397,8 +397,8 @@ label-active-padding = 3
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-occupied = %index%
-label-occupied-padding = 3
+label-unfocused = %index%
+label-unfocused-padding = 3
 
 ; Available tokens:
 ;   %name%
@@ -422,8 +422,8 @@ label-urgent-background = {{.web.background_secondary}}
 label-urgent-padding = 3
 
 ; Separator in between workspaces
-label-separator = |
-label-separator-padding = 1
+label-separator = " "
+label-separator-padding = 2
 label-separator-foreground = {{.web.border_secondary}}
 
 ;; _-_-_
@@ -589,12 +589,12 @@ interface = eth0
 
 [module/wireless-network]
 type = internal/network
-interface = wlp3s0
+interface = wlp0s20f3
 
 ; Normal Module
 [module/network]
 type = internal/network
-interface = wlan0
+interface = wlp0s20f3
 
 ; Seconds to sleep between updates
 ; Default: 1

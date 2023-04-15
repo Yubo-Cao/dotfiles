@@ -4,7 +4,6 @@ init = true
 hooks = [
     "nitrogen --restore --force-setter=xinerama",
     "python ~/.config/polybar/launch.py", 
-    "picom --blur-method dual_kawase --blur-strength 7",
     "xborders --config ~/.config/xborders/config.json"
 ]
 delay = 0.5

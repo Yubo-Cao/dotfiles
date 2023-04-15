@@ -1,7 +1,7 @@
 ### Output
 
 # Fix tearing
-# exec --no-startup-id picom --backend glx 
+exec --no-startup-id picom --vsync
 
 # Daemon
 exec_always --no-startup-id python ~/.config/i3/script/workscreen.py

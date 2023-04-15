@@ -1,5 +1,5 @@
 {{- if .wayland }}
---enable-features=UseOzonePlatform,WaylandWindowDecorations,WebRTCPipeWireCapturer
---ozone-platform=wayland
+--enable-wayland-ime
+--enable-features=WaylandWindowDecorations
 --ozone-platform-hint=auto
 {{- end }}

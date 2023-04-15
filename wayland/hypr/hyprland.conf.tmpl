@@ -23,13 +23,6 @@ exec-once = swayidle -w \
 bindl=,switch:off:Lid Switch,exec,hyprctl dispatch dmps off
 bindl=,switch:on:Lid Switch,exec,hyprctl dispatch dmps on
 
-# Nvidia
-env = LIBVA_DRIVER_NAME,nvidia
-env = XDG_SESSION_TYPE,wayland
-env = GBM_BACKEND,nvidia-drm
-env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-env = WLR_NO_HARDWARE_CURSORS,1
-
 ### Montior
 # 1.5 scaling
 monitor = eDP-1,3072x1920@60,0x0,1.5
@@ -63,8 +56,8 @@ general {
     gaps_in = 4
     gaps_out = 8
     border_size = 4
-    col.active_border = rgba({{.hcolors.primary_500}}ee) rgba({{.hcolors.primary_600}}ee) 45deg
-    col.inactive_border = rgba({{.hcolors.slate_500}}aa)
+    col.active_border = rgba({{.hex.primary_500}}ee) rgba({{.hex.primary_600}}ee) 45deg
+    col.inactive_border = rgba({{.hex.slate_500}}aa)
 
     layout = dwindle
 

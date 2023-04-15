@@ -3,33 +3,33 @@
     border-radius: 0;
     font-family: {{.ui_font}}, "Symbols Nerd Font";
     font-size: 13px;
-    color: {{.colors.text.default}};
+    color: {{.web.text_dark}};
 }
 
 window#waybar {
-    background-color: {{.colors.background.default}};
+    background-color: {{.web.background_dark}};
 }
 
 /* Indicators */
 #idle_inhibitor.activated {
-    color: {{.colors.green_500}}
+    color: {{.web.green_500}}
 }
 
 #pulseaudio.muted {
-    color: {{.colors.amber_500}}
+    color: {{.web.amber_500}}
 }
 
 #battery.charging {
-    color: {{.colors.green_500}}
+    color: {{.web.green_500}}
 }
 
 #battery.warning:not(.charging) {
-    color: {{.colors.amber_500}}
+    color: {{.web.amber_500}}
 }
 
 #battery.critical:not(.charging),
 #temperature.critical {
-    color: {{.colors.red_500}}
+    color: {{.web.red_500}}
 }
 
 /* Modules */
@@ -45,7 +45,7 @@ window#waybar {
 .modules-right label,
 #tray {
     margin: 6px 0px;
-    border-left: 2px solid {{.colors.border.default}};
+    border-left: 2px solid {{.web.border_dark}};
     padding: 0px 12px;
 }
 

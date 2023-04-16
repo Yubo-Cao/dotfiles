@@ -1,5 +1,4 @@
-#!/usr/bin/bash
-source "$CHEZMOI_SOURCE_DIR/common.sh"
+#!/usr/bin/bash source "$CHEZMOI_SOURCE_DIR/common.sh"
 
 info "Setting up i3"
 
@@ -25,7 +24,8 @@ install i3 \
 
 install "i3 utilies" \
     xdg-utils gnome-keyring \
-    polkit-dump-agent xorg-xhost \
+    xorg-xhost \
+    polkit-kde-agent
     xdg-desktop-portal xdg-desktop-portal-kde \
     xclip xsel xrandr \
     dunst \

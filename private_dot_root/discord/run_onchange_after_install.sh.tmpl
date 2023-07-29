@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+source "$CHEZMOI_SOURCE_DIR/common.sh"
+
+# discord.desktop hash: {{ include "private_dot_root/discord/desktop" | sha256sum }}
+sudo mv "$CHEZMOI_SOURCE_DIR/private_dot_root/discord/desktop" /usr/share/applications/discord.desktop

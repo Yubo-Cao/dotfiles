@@ -27,4 +27,7 @@ install "Desktop applications" \
     pavucontrol \
     spotify \
     vlc \
-    zathura
+    zathura \
+    materia-gtk-theme \
+    papirus-icon-theme \
+    dbus

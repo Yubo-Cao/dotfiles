@@ -14,7 +14,8 @@ install "Common applications" \
     neovim \
     ripgrep \
     unzip \
-    wget
+    wget \
+    github-cli
 
 # install desktop applications
 install "Desktop applications" \

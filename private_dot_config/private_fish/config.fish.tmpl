@@ -36,12 +36,8 @@ function set_environment
     set -Ux XDG_SESSION_DESKTOP Hyprland
 
     # Screen
-    set -Ux QT_SCREEN_SCALE_FACTORS "eDP-1=1.5;HDMI-A-1=1.0;"
+    set -Ux QT_SCREEN_SCALE_FACTORS "eDP-1=1;HDMI-A-1=1.0;"
     set -Ux QT_AUTO_SCREEN_SCALE_FACTOR 0
-
-    # Font
-    set -Ux FONTCONFIG_FILE "$HOME/.config/fontconfig/fonts.conf"
-    set -Ux FONTCONFIG_PATH "$HOME/.config/fontconfig/conf.d"
 
     # Theme
     set -Ux QT_QPA_PLATFORMTHEME qt5ct

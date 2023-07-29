@@ -1,5 +1,6 @@
 {{- if .wayland }}
 --enable-wayland-ime
 --enable-features=WaylandWindowDecorations
---ozone-platform-hint=auto
+--enable-features=UseOzonePlatform
+--ozone-platform=wayland
 {{- end }}

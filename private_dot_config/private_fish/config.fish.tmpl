@@ -30,14 +30,24 @@ function set_environment
     set -Ux SDL_IM_MODULE fcitx
     set -Ux GLFW_IM_MODULE ibus
 
+    # Hyprland
+    set -Ux XDG_CURRENT_DESKTOP Hyprland
+    set -Ux XDG_SESSION_TYPE wayland
+    set -Ux XDG_SESSION_DESKTOP Hyprland
+
     # Screen
-    set -Ux QT_SCREEN_SCALE_FACTORS "eDP-1=1.5;HDMI-1=1.0;DP-1=1.0;DP-2=1.0;"
+    set -Ux QT_SCREEN_SCALE_FACTORS "eDP-1=1.5;HDMI-A-1=1.0;"
     set -Ux QT_AUTO_SCREEN_SCALE_FACTOR 0
+
+    # Font
+    set -Ux FONTCONFIG_FILE "$HOME/.config/fontconfig/fonts.conf"
+    set -Ux FONTCONFIG_PATH "$HOME/.config/fontconfig/conf.d"
 
     # Theme
     set -Ux QT_QPA_PLATFORMTHEME qt5ct
     set -Uax GTK2_RC_FILES /etc/gtk-2.0/gtkrc "$HOME/.gtkrc-2.0" "$HOME/.config/gtkrc-2.0"
     set -Uax GTK_RC_FILES /etc/gtk/gtkrc "$HOME/.gtkrc" "$HOME/.config/gtkrc"
+    set -Ux GTK_THEME Materia-light
 
     # Neovim
     set -Ux EDITOR nvim
@@ -46,11 +56,7 @@ function set_environment
     set -Ux PYENV_ROOT $HOME/.pyenv
     set -U fish_user_paths $PYENV_ROOT/bin $fish_user_paths
 
-    # i3
-    set -Ux XDG_CURRENT_DESKTOP i3 
-    set -Ux XDG_SESSION_DESKTOP i3 
-
-    # texlive
+    # Texlive
     set -l texlive /usr/local/texlive/2023/bin/x86_64-linux
     if not contains "$texlive" $PATH
         fish_add_path "$texlive"
@@ -62,7 +68,7 @@ function set_environment
         end
         set -Uxa INFOPATH "$texlive"
     end
-    set -l exist (manpath -q | string split ':');
+    set -l exist (manpath -q | string split ':')
     set -l texlive /usr/local/texlive/2023/texmf-dist/doc/man
     if not contains "$texlive" $exist
         if not set -q MANPATH
@@ -95,7 +101,7 @@ function icat
 end
 
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+    set -gx PATH "$PNPM_HOME" $PATH
 end
 
 unset_wayland_environment

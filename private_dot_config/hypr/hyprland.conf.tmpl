@@ -124,10 +124,13 @@ $down = j
 $up = k
 $right = l
 
-# Terminal - {{.terminal}}
-bind = $mod, Return, exec, {{.terminal}}
 # Launcher - Wofi
 bind = $mod, d, exec, wofi --show drun
+# Launch application
+bind = $mod, Return, exec, {{.terminal}}
+bind = $mod, w, exec, {{.browser}}
+bind = $mod, c, exec, {{.gui_editor}}
+bind = $mod, v, exec, {{.file_manager}}
 
 # Close window
 bind = $mod SHIFT, Q, killactive, 
@@ -140,11 +143,6 @@ bind = $mod SHIFT, E, exit
 bind = $mod SHIFT, space, togglefloating, 
 bind = $mod, p, pseudo, # dwindle
 bind = $mod, e, togglesplit, # dwindle
-# Launch application
-bind = $mod, Return, exec, {{.terminal}}
-bind = $mod, w, exec, {{.browser}}
-bind = $mod, c, exec, {{.gui_editor}}
-bind = $mod, v, exec, {{.file_manager}}
 
 # Move focus with mainMod + arrow keys
 bind = $mod, $left, movefocus, l

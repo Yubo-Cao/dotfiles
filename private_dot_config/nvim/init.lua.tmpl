@@ -9,7 +9,7 @@ vim.o.number = true
 -- Look and feel
 vim.cmd("colorscheme one-nvim")
 vim.cmd("set background=light")
-vim.o.guifont = "FiraCode NF:h8"
+vim.o.guifont = "{{ .code_font }}:h8"
 
 -- Screen line movement
 vim.cmd([[
@@ -45,4 +45,6 @@ function toggle_wrap()
     end
 end
 
-vim.api.nvim_set_keymap("n", "<C-S-W>", ":lua toggle_wrap()<CR>", { silent = true })
+vim.api.nvim_set_keymap("n", "<C-S-W>", ":lua toggle_wrap()<CR>", {
+    silent = true
+})

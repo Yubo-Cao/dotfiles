@@ -4,7 +4,6 @@ source "$CHEZMOI_SOURCE_DIR/common.sh"
 
 install "Display fonts" \
     noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra \
-    ttf-firacode-nerd \
     inter-font \
     ttf-material-design-icons-webfont
 

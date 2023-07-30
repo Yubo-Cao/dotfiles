@@ -29,6 +29,6 @@ install "Desktop applications" \
     spotify \
     vlc \
     zathura \
-    materia-gtk-theme \
+    orchis-theme orchis-kde-theme-git \
     papirus-icon-theme \
     dbus

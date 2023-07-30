@@ -1,0 +1,182 @@
+## Unreleased
+
+### Feat
+
+- **app**: :sparkles: Add discord wayland patch
+- **env**: :sparkles: Update the environment variable:
+- :sparkles: Add github-cli into common applications
+- **hypr**: :sparkles: Remove Hyprland logo from the splash screen
+- :sparkles: Use some different wallpaper
+- :sparkles: Install common desktop application in the setup as well
+- tweak i3
+- tweaking GTK fontsize
+- install dhcpcd
+- remove interface name
+- tweaking bspwm, i3, and picom tearing
+- fix some bugs
+- gtk themes, bspwm
+- improve xborder setting and fix tearing
+- add rofi-calc, rofi-windows, and refactor font
+- fix xset, better xborders, fix vsync, and better lock
+- add zathura config
+- use template for fonts
+- improve network management, use Inter as default
+- change wallpaper, add matched punct, and update fontconf
+- add arduino setup
+- fix ATTJWD and allow i3 to exit with keybind
+- update GCPS secret
+- add good i3lock
+- better lock
+- better i3 and picom config
+- better dunst and xborders (forked it)
+- add dunst
+- make sure background show up first
+- font to ensure resolve to SC
+- **i3**: better border
+- introduce better daemon that will maintain singleton
+- add bluetooth
+- add network configuration files
+- setup the picom fade and fcitx5 pinyin
+- update github PAT
+- add customize texmf
+- remove github pat prompt
+- use keepassxc
+- add picom and polybar into monitor udev daemon
+- better multi-monitor support through udev drm daemon
+- better autorandr config
+- add new variable color to everywhere
+- add palette script and init file
+- move all wayland things out
+- add autorandr
+- incorporate improved polybar and improve autotiling
+- rewrite polybar launcher
+- fix texlive installation and fish variables
+- use zathura
+- add latxeindent
+- texlive script and smaller movement for i3 resize
+- add bashls(p), texlive, and rclone service
+- better lsp and more language servers
+- add zathura and more hotkey for flameshot
+- add flameshot
+- fix wayland variables
+- scale script and autotiling
+- change the color for grub theme
+- optimus using dynamic switching
+- add optimus manager
+- add install package scripts
+- get rid of format on save bug
+- better rofi theme
+- better user modules and adjust application
+- better polybar configuration
+- better scaling and polybar font:
+- better script and remove border radius
+- add an alias to neovide
+- better lua configuration and coloring
+- more installation requirement
+- fix weird display
+- fcitx5 pinyin
+- more configurations for nvim
+- add install script for i3 and polybar
+- fix the scaling of i3
+- better picom and less gap for i3
+- better polybar look and feel
+- add polybar configurations
+- add zoxide, ripgrep, and fd with fish
+- better eww script, zoxide
+- split i3 config into separate files
+- fix neovim
+- better eww control with better nvim
+- add environment variables
+- add picom configuration
+- change hyprland a bit
+- make highres work
+- add i3 configuration
+- make wayland adjustable
+- use nitrogen for wallpaper
+- better color scheem for hyprland and kitty
+- move to hyprland, change fish env
+- change the wallpaper
+- add sway lock
+- fix code wayland
+- make waybar work under hypr
+- add move and resize hotkeys
+- remove sway
+- add hypr
+- improved hyprland configuration
+- firefox as default, hyprland
+- configure mako
+- add kde desktop portal
+- fix hotplug DPI
+- fix GTK slow start
+- add polkit
+- ignore pycache
+- better common script
+- add matter grub theme
+- fish, edge, and sway
+- add grub theme
+- add tlp
+- allow shell check to follow external resources
+- add flameshot and fix kitty style
+- add nvim colorizer
+- better waybar style
+- better kitty theme
+- browser, kitty, fcitx5, flameshot, and fish
+- adjust style of waybar
+- adjust waybar, kitty, and sway
+- fix the backlight
+- stylish waybar
+- change the wall paper
+- install icons
+- better exit
+- fix the strong border color
+- add fcitx5 configuration
+- add installation scripts
+- setup waybar
+- bring fcitx support back
+- change the color of window
+- add git configuration
+- remove packer compiled
+- add nvim under control
+- add more environment variables
+- bring edge under wayland
+- remove dot_pam_environment which was deprecated
+- add fcitx5 environment variables
+- add kitty configuration
+- improve wofi theme
+- add github pat in fish
+- initial commit
+
+### Fix
+
+- **app**: :bug: Move rendered template file, rather than the raw file in the chezmoi directory
+- **waybar**: :lipstick: Improve the style of currently focused tab
+- **secret**: :fire: Remove unnecessary tag in the secret database
+- **app**: :bug: Install polkit-dump-agent-git rather than polkit-dump--agent, which doesn't exist anymore
+- **env**: :bug: Remove font config environment variable
+- **tex**: :bug: Fix the auto-installer script to install LaTeX
+- **wayland**: :bug: Don't use git version of the xdg-desktop-portal
+- **wayland**: :bug: Enable wayland support on microsoft edge, change the file name
+- **wayland**: :bug: Make those application work wayland
+- **hyprpaper**: :bug: Rename the wallpaper.png to wallpaper.jpg
+- :bug: Remove xborders because we are in waylan
+- :bug: Remove dunst because we won't use it in Xorg
+- :bug: Add swaylock back because we need that lock the laptop
+- :bug: Remove extra xdg-desktop in the installation
+- :bug: Add materia-gtk-theme & papirus-icon-theme in the installation
+- :bug: Rename the edge flags properly and remove weird charater appended
+- **waybar**: :bug: Fix the spelling from hyperland to hyprland
+- :sparkles: Move Hyprland back to the configuration directory
+- :bug: Change microsoft-edge-dev to microsoft-edge and just number of icons
+- :fire: Remove unnecessary i3 configurations
+- **wayland**: remove sway from wayland
+- update wayland color palette
+- remove unnecessary fcitx cache
+- **fish**: fix excessive wayland env
+- **picom,i3**: remove deprecated options for picom
+- allow nitrogen to work
+- improve the common.sh
+- fix the installation script of fcitx5
+
+### Refactor
+
+- **fish**: :recycle: Change cz and ce to chz and che as new alias

@@ -124,8 +124,8 @@ $down = j
 $up = k
 $right = l
 
-# Terminal - Kitty
-bind = $mod, Return, exec, kitty
+# Terminal - {{.terminal}}
+bind = $mod, Return, exec, {{.terminal}}
 # Launcher - Wofi
 bind = $mod, d, exec, wofi --show drun
 
@@ -138,8 +138,13 @@ bind = $mod SHIFT, f, fullscreen, 1 # max
 bind = $mod SHIFT, E, exit 
 # Toggle floating
 bind = $mod SHIFT, space, togglefloating, 
-bind = $mod, P, pseudo, # dwindle
+bind = $mod, p, pseudo, # dwindle
 bind = $mod, e, togglesplit, # dwindle
+# Launch application
+bind = $mod, Return, exec, {{.terminal}}
+bind = $mod, w, exec, {{.browser}}
+bind = $mod, c, exec, {{.gui_editor}}
+bind = $mod, v, exec, {{.file_manager}}
 
 # Move focus with mainMod + arrow keys
 bind = $mod, $left, movefocus, l

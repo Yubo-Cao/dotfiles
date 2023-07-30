@@ -30,6 +30,6 @@ install "Hypr utilies" \
     wl-clipboard \
     xdg-utils gnome-keyring xorg-xwayland \
     autotiling-rs \
-    polkit-dump-agent xorg-xhost \
+    polkit-dump-agent-git xorg-xhost \
     xdg-desktop-portal-hyprland \
     hyprpaper swayidle swaylock-effects-git

@@ -1,6 +1,0 @@
-#!/usr/bin/bash
-
-source "$CHEZMOI_SOURCE_DIR/common.sh"
-
-# discord.desktop hash: {{ include "private_dot_root/discord/discord.desktop" | sha256sum }}
-sudo cp "$HOME/.root/discord/discord.desktop" /usr/share/applications/discord.desktop

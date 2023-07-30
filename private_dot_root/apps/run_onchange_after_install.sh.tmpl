@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+source "$CHEZMOI_SOURCE_DIR/common.sh"
+
+# discord.desktop hash: {{ include "private_dot_root/apps/discord.desktop" | sha256sum }}
+sudo cp "$HOME/.root/apps/discord.desktop" /usr/share/applications/discord.desktop
+
+# google-chrome.desktop hash: {{ include "private_dot_root/apps/google-chrome.desktop" | sha256sum }}
+sudo cp "$HOME/.root/apps/google-chrome.desktop" /usr/share/applications/google-chrome.desktop

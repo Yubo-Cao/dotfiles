@@ -18,6 +18,8 @@ info "Install Bash language server"
 sudo npm install -g bash-language-server
 info "Install Grammarly language server"
 sudo npm install -g grammarly-languageserver
+info "Install lua language server"
+install "Lua" lua-language-server
 
 # VimTeX
 install "Zathura" \

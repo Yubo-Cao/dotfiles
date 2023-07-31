@@ -18,10 +18,10 @@ exec-once = gsettings set org.gnome.desktop.interface icon-theme 'papirus-dark'
 # Lock Screen
 exec-once = swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
-    timeout 600 'hyprctl dispatch dmps off' resume 'hyprctl dispatch dmps on' \
+    timeout 600 'hyprctl dispatch dpms off' resume 'hyprctl dispatch dpms on' \
     before-sleep 'swaylock -f -c 000000'
-bindl=,switch:off:Lid Switch,exec,hyprctl dispatch dmps off
-bindl=,switch:on:Lid Switch,exec,hyprctl dispatch dmps on
+bindl=,switch:off:Lid Switch,exec,hyprctl dispatch dpms off
+bindl=,switch:on:Lid Switch,exec,hyprctl dispatch dpms on
 
 ### Montior
 # 1.5 scaling

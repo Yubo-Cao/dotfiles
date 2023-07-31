@@ -19,7 +19,7 @@
  <!-- Map fonts that are commonly used by web pages to our preferred fonts -->
  <match target="pattern">
   <test qual="any" name="family">
-   <string>Liberation Sans</string>
+   <string>Noto Sans</string>
   </test>
   <edit mode="assign" name="family" binding="same">
    <string>sans-serif</string>
@@ -27,7 +27,7 @@
  </match>
  <match target="pattern">
   <test qual="any" name="family">
-   <string>Liberation Mono</string>
+   <string>{{ .code_font }}</string>
   </test>
   <edit mode="assign" name="family" binding="same">
    <string>monospace</string>
@@ -49,6 +49,7 @@
   </test>
   <edit mode="prepend" name="family" binding="same">
    <string>{{.ui_font}}</string>
+   <string>Noto Sans</string>
   </edit>
  </match>
  <!-- Default serif fonts -->

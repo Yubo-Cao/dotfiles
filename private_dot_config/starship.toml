@@ -1,7 +1,5 @@
 add_newline = true
 
-error_symbol = "[✗](bold red)"
-
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true

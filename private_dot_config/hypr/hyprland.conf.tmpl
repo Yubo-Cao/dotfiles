@@ -130,3 +130,21 @@ misc {
 	animate_mouse_windowdragging = true
     enable_swallow = true
 }
+
+### Window Rules
+windowrule = float, ^(steam)$
+windowrule = float, ^(guifetch)$
+windowrule = float, ^(showmethekey-gtk)$
+windowrule = pin, ^(showmethekey-gtk)$
+
+# Looks
+windowrulev2 = opacity 0.95 override 0.95 override,class:^(code)$
+windowrulev2 = opacity 0.95 override 0.95 override,class:^(Code)$
+windowrulev2 = opacity 0.95 override 0.95 override,class:^(code-url-handler)$
+windowrulev2 = opacity 0.95 override 0.95 override,class:^({{.terminal}})$
+
+# Dialogs
+windowrule=float,title:^(Open File)(.*)$
+windowrule=float,title:^(Open Folder)(.*)$
+windowrule=float,title:^(Save As)(.*)$
+windowrule=float,title:^(Library)(.*)$

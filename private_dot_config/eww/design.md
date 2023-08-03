@@ -1,0 +1,24 @@
+The top bar we want to create should have the following functionality:
+
+- [ ] A logo on the left side (optional)
+- [ ] A workspace indicator
+- [ ] A currently focused window indicator
+- [ ] A search bar (optional)
+- [ ] A clock on the right side.
+- [ ] A settings adjustment button
+  - [ ] Adjust the brightness
+  - [ ] Adjust the volume
+  - [ ] Adjust the IME
+  - [ ] Adjust the keyboard backlight (optional)
+  - [ ] Adjust the network settings (optional)
+  - [ ] Adjust the power settings (optional)
+- [ ] The settings pane should have an indicator as well
+  - [ ] A notification center.
+  - [ ] A currently playing music indicator.
+  - [ ] A currently running application indicator/of the current focused window.
+  - [ ] A battery indicator.
+  - [ ] A memory indicator.
+  - [ ] A CPU indicator.
+  - [ ] A temperature indicator.
+  - [ ] And other fancy stuff
+- [ ] Along with a system tray.

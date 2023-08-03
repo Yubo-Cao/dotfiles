@@ -1,14 +1,14 @@
 format = """
-[]({{.web.primary_200}})\
-$os\
-$username\
+[](fg:{{.web.primary_200}})\
+[$os\
+$username](bg:{{.web.primary_200}} fg:{{.web.primary_700}})\
 [](bg:{{.web.secondary_200}} fg:{{.web.primary_200}})\
-$directory\
+[$directory](bg:{.web.secondary_200}} fg:{{.web.secondary_700}})\
 [](bg:{{.web.tertiary_200}} fg:{{.web.secondary_200}})\
-$git_branch\
-$git_status\
+[$git_branch\
+$git_status](bg:{{.web.tertiary_200}} fg:{{.web.tertiary_700}})\
 [](bg:{{.web.blue_200}} fg:{{.web.tertiary_200}})\
-$c\
+[$c\
 $elixir\
 $elm\
 $golang\
@@ -19,12 +19,13 @@ $julia\
 $nodejs\
 $nim\
 $rust\
-$scala\
+$scala](bg:{{.web.blue_200}} fg:{{.web.blue_700}})\
 [](bg:{{.web.sky_200}} fg:{{.web.blue_200}})\
-$docker_context\
+[$docker_context](bg:{{.web.sky_200}} fg:{{.web.sky_700}})\
 [](bg:{{.web.emerald_200}} fg:{{.web.sky_200}})\
-$time\
-[ ](fg:{{.web.emerald_200}})\
+[$time]({{.web.emerald_200}} fg:{{.web.emerald_700}})\
+[ ](fg:{{.web.emerald_200}})
+-> 
 """
 
 # Disable the blank line at the start of the prompt

@@ -16,6 +16,7 @@ application/zip=xmind.desktop
 x-scheme-handler/mailto=microsoft-edge.desktop
 x-scheme-handler/about=microsoft-edge.desktop
 x-scheme-handler/unknown=microsoft-edge.desktop
+x-scheme-handler/figma=figma-linux.desktop
 
 [Added Associations]
 x-scheme-handler/http=microsoft-edge-dev.desktop;

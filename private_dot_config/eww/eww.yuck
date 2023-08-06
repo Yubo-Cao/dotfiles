@@ -74,12 +74,24 @@
 
 (defwidget time_indicator []
   (box
-    :class "surface px-4 time-indicator"
+    :class "time-indicator"
     :orientation "v"
     :spacing -12
     
     (label :text current_time :class "time" :halign "end")
     (label :text current_date :class "date" :halign "end")))
+
+    
+(defwidget right []
+  (box
+    :orientation "h"
+    :halign "end"
+    :space-evenly false
+    :spacing 16
+    :class "surface px-4"
+    
+    (time_indicator)
+    (systray :class "tray" :icon-size 16)))
 
 (defwidget bar []
   (box
@@ -90,7 +102,7 @@
     
     (workspaces :current_workspace current_workspace)
     (window_indicator)
-    (time_indicator)))
+    (right)))
 
 (defwindow bar
   :monitor 0

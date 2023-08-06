@@ -99,3 +99,8 @@ $m-3-sys-light-surface-container-low: #f4f3f7;
     @include m-3-label-small;
   }
 }
+
+.tray {
+  background-color: transparent;
+  padding: 4px;
+}

@@ -65,6 +65,9 @@ $m-3-sys-light-surface-container-low: #f4f3f7;
 .window-indicator {
   @include m-3-body-large;
   background-color: $m-3-sys-light-surface;
+  transition-property: width, height;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
 }
 
 .search {

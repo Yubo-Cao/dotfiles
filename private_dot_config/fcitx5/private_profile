@@ -1,14 +1,14 @@
 [Groups/0]
 # Group Name
-Name=Pinyin
+Name=Spanish
 # Layout
-Default Layout=us
+Default Layout=es-winkeys
 # Default Input Method
 DefaultIM=keyboard-us
 
 [Groups/0/Items/0]
 # Name
-Name=pinyin
+Name=keyboard-es-winkeys
 # Layout
 Layout=
 
@@ -20,15 +20,15 @@ Layout=
 
 [Groups/1]
 # Group Name
-Name=Spanish
+Name=Pinyin
 # Layout
-Default Layout=es-winkeys
+Default Layout=us
 # Default Input Method
 DefaultIM=keyboard-us
 
 [Groups/1/Items/0]
 # Name
-Name=keyboard-es-winkeys
+Name=pinyin
 # Layout
 Layout=
 

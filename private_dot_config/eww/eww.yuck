@@ -5,12 +5,12 @@
 (defpoll current_time
   :interval "60s"
   :initial ""
- `env LANG=en_US.UTF-8 date +'%I:%M %p'`)
+`env LANG=en_US.UTF-8 date +'%I:%M %p'`)
 
 (defpoll current_date
   :initial ""
   :interval "3600s"
- `date +'%Y/%m/%d'`)
+`date +'%Y/%m/%d'`)
 
 (defwidget workspace_button [name active]
   (button
@@ -26,9 +26,7 @@
       :halign "center"
       :valign "center"
       
-     :path { active ? "./icons/workspace-active.svg" : "./icons/workspace.svg"})))
-  
-
+    :path { active ? "./icons/workspace-active.svg" : "./icons/workspace.svg"})))
 
 (defwidget icon_button [icon ?onclick]
   (button
@@ -68,11 +66,11 @@
     (input
       :class "input"
       :width 232
-     :value "Launch Application")
+    :value "Launch Application")
     (icon_button
       :class "button"
       :onclick `hyprctl dispatch "search %s"`
-     :icon "search.svg")))
+    :icon "search.svg")))
 
 (defwidget time_indicator []
   (box
@@ -86,23 +84,24 @@
 (defwidget bar []
   (box
     :orientation "h"
+    :halign "center"
     :space-evenly false
     :spacing 16
     
     (workspaces :current_workspace current_workspace)
-    (application_launcher)
+    (window_indicator)
     (time_indicator)))
 
 (defwindow bar
   :monitor 0
-  :windowtype "dock"
+  :windowtype "normal"
   
   :geometry (geometry :x "8px"
-    :y "0%"
-    :width "30%"
-    :height "40px"
-  :anchor "top center")
-  :stacking "bt"
+             :y "0%"
+             :width "30%"
+             :height "40px"
+             :anchor "top center")
+  :stacking "overlay"
   :exclusive true
-  :focusable true
+  :focusable false
   (bar))

@@ -2,7 +2,7 @@
 # fcitx5
 exec-once = fcitx5
 # waybar
-exec-once = waybar
+exec-once = eww open bar
 # gammastep
 exec-once = gammastep -t 5700:3600 -l 33.956215:-83.987961
 # dbus / flameshot / gtk
@@ -55,8 +55,8 @@ input {
 }
 
 general {
-    gaps_in = 4
-    gaps_out = 8
+    gaps_in = 2
+    gaps_out = 4
     border_size = 1
 
     col.active_border = rgba({{.hex.secondary_600}}ee) rgba({{.hex.primary_600}}ee) 45deg
@@ -100,7 +100,7 @@ animations {
     animation = windows, 1, 2, md3_decel, slide
     animation = border, 1, 5, default
     animation = fade, 1, 0.0000001, default
-    animation = workspaces, 1, 4, md3_decel, slide
+    animation = workspaces, 1, 5, md3_decel, slide
 }
 
 dwindle {
@@ -148,3 +148,4 @@ windowrule=float,title:^(Open File)(.*)$
 windowrule=float,title:^(Open Folder)(.*)$
 windowrule=float,title:^(Save As)(.*)$
 windowrule=float,title:^(Library)(.*)$
+windowrule=float,title:^沙拉查词

@@ -1,0 +1,15 @@
+(defpoll current_time
+        :interval "60s"
+        :initial ""
+        `env LANG=en_US.UTF-8 date +'%I:%M %p'`)
+(defpoll current_date
+        :initial ""
+        :interval "3600s"
+        `date +'%Y/%m/%d'`)
+(defwidget time_indicator []
+(box :class "time-indicator"
+     :orientation "v"
+     :spacing -12
+     
+     (label :text current_time :class "time" :halign "end")
+     (label :text current_date :class "date" :halign "end")))

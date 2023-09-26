@@ -1,0 +1,28 @@
+(defwidget power_button [icon action_name onclick ?dangerous]
+    (box
+      :class "power-button ${dangerous != '' ? 'dangerous' : ""}"
+      :orientation "v"
+      :space-evenly false
+          
+      (box :halign "center" :valign "center" (button :width 48 :height 48 :class "icon-button" (icon :icon icon :size 24)))
+      (label :text action_name :halign "center")))
+  
+  (defwidget power []
+    (box 
+      :orientation "h"
+      :spacing 8
+      :space-evenly true
+      
+      (power_button :action_name "Power off" 
+       :icon "power/power-off.svg" 
+       :onclick "systemctl poweroff"
+       :dangerous "true") 
+      (power_button :action_name "Restart" 
+       :icon "power/restart.svg" 
+       :onclick "systemctl reboot")
+      (power_button :action_name "Suspend" 
+       :icon "power/suspend.svg" 
+       :onclick "systemctl suspend")
+      (power_button :action_name "Logout" 
+       :icon "power/logout.svg" 
+       :onclick "hyprctl dispatch exit")))

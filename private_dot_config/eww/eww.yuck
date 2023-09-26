@@ -1,32 +1,12 @@
-(deflisten current_workspace :initial "2" "bash ~/.config/eww/scripts/get-active-workspace.sh")
-(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
 (deflisten active_window :initial "none" "bash ~/.config/eww/scripts/get-active-window.sh")
 
-(defpoll current_time
-  :interval "60s"
-  :initial ""
-`env LANG=en_US.UTF-8 date +'%I:%M %p'`)
-
-(defpoll current_date
-  :initial ""
-  :interval "3600s"
-`date +'%Y/%m/%d'`)
-
-(defwidget workspace_button [name active]
-  (button
-    :class { active ? "icon-button active" : "icon-button"}
-    :width 40
-    :height 40
-    :onclick `hyprctl dispatch "workspace ${name}"`
-    :tooltip name
-    
-    (image
-      :width 12
-      :height 12
-      :halign "center"
-      :valign "center"
-      
-    :path { active ? "./icons/workspace-active.svg" : "./icons/workspace.svg"})))
+(include "./components/icon.yuck")
+(include "./components/volume.yuck")
+(include "./components/workspaces.yuck")
+(include "./components/power.yuck")
+(include "./components/time.yuck")
+(include "./components/network.yuck")
+(include "./components/battery.yuck")
 
 (defwidget icon_button [icon ?onclick]
   (button
@@ -35,19 +15,11 @@
     :height 40
     :onclick onclick
     (image
-      :width 12
-      :height 12
+      :image-width 20
+      :image-height 20
       :halign "center"
       :valign "center"
-    :path "./icons/${icon}")))
-
-(defwidget workspaces [current_workspace]
-  (box
-    :class "surface"
-    :spacing 0
-    
-    (for entry in workspaces
-      (workspace_button :name entry :active "${entry == current_workspace}"))))
+      :path "./icons/${icon}")))
 
 (defwidget window_indicator []
   (box
@@ -66,32 +38,43 @@
     (input
       :class "input"
       :width 232
-    :value "Launch Application")
+      :value "Launch Application")
     (icon_button
       :class "button"
       :onclick `hyprctl dispatch "search %s"`
-    :icon "search.svg")))
+      :icon "search.svg")))
 
-(defwidget time_indicator []
+
+(defwidget update_indicator []
+  (icon :icon "system_update.svg" :size 20))
+
+(defwidget indicator []
   (box
-    :class "time-indicator"
-    :orientation "v"
-    :spacing -12
+    :class "surface indicator"
+    :orientation "h"
+    :spacing 12
+    :space-evenly false
     
-    (label :text current_time :class "time" :halign "end")
-    (label :text current_date :class "date" :halign "end")))
+    (update_indicator)
+    (battery_indicator)
+    (network_indicator)
+    (time_indicator)))
 
-    
 (defwidget right []
   (box
     :orientation "h"
     :halign "end"
     :space-evenly false
-    :spacing 16
-    :class "surface px-4"
+    :spacing 12
+    :class "surface right"
     
-    (time_indicator)
-    (systray :class "tray" :icon-size 16)))
+    (indicator)
+    (systray 
+      :class "tray" 
+      :icon-size 16)
+    (icon_button 
+      :icon "settings.svg" 
+      :onclick `bash ~/.config/eww/scripts/open-popup.sh popup`)))
 
 (defwidget bar []
   (box
@@ -107,13 +90,36 @@
 (defwindow bar
   :monitor 0
   :windowtype "normal"
-  
   :geometry (geometry :x "8px"
-             :y "0%"
-             :width "30%"
-             :height "40px"
-             :anchor "top center")
-  :stacking "overlay"
+                      :y "0%"
+                      :width "30%"
+                      :height "40px"
+                      :anchor "top center"
+                      :stacking "overlay")
   :exclusive true
   :focusable false
   (bar))
+
+(defwidget popup []
+  (box
+    :class "surface popup"
+    :orientation "v"
+    :spacing 8
+    :space-evenly false
+    
+    (speaker_volume_slider)
+    (microphone_volume_slider)
+    (power)))
+
+(defwindow popup
+  :monitor 0
+  
+  :geometry (geometry :x "8px"
+                      :y "4px"
+                      :width "327px"
+                      :height "320px"
+                      :anchor "top right")
+  
+  :stacking "fg"
+  :focusable true
+  (popup))

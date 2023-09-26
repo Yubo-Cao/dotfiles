@@ -9,7 +9,13 @@ vim.o.number = true
 -- Look and feel
 vim.cmd("colorscheme one-nvim")
 vim.cmd("set background=light")
-vim.o.guifont = "{{ .code_font }}:h8"
+vim.o.guifont = "{{ .code_font }}:h12"
+
+-- Neovide
+vim.g.neovide_padding_top=16
+vim.g.neovide_padding_left=16
+vim.g.neovide_padding_right=16
+vim.g.neovide_padding_bottom=16
 
 -- Screen line movement
 vim.cmd([[

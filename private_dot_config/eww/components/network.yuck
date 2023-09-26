@@ -1,0 +1,14 @@
+(deflisten network_ssid :initial "none" "bash ~/.config/eww/scripts/get-network.sh ssid")
+(deflisten network_signal :initial "0" "bash ~/.config/eww/scripts/get-network.sh signal")
+(defwidget network_indicator []
+  (box
+    :width 24
+    :height 24
+    :tooltip "${network_ssid} ${network_signal}%"
+    (icon
+      :icon { network_signal == "No network" ? "network/not-connected.svg"
+              : network_signal < 25 ? "network/1.svg"
+              : network_signal < 50 ? "network/2.svg"
+              : network_signal < 75 ? "network/3.svg"
+              : "network/4.svg"}
+      :size 20)))

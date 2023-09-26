@@ -27,9 +27,9 @@ source=~/.config/hypr/keybinds.conf
 
 ### Montior
 # 1.5 scaling
-monitor = eDP-1,3072x1920@60,0x0,1.5
-# 3072 / 1.5 = 2048, left-rght setup
-monitor = HDMI-A-1,190x1080@60,2048x0,1
+monitor = eDP-1,3072x1920@60,0x0,1.2
+# 3072 / 1.25 = 2457.6, left-rght setup
+monitor = HDMI-A-1,190x1080@60,2560x0,1
 # wallpaper
 exec-once = hyprpaper
 # Xwayland DPI
@@ -39,7 +39,8 @@ exec-once = xrdb -load ~/.Xresources
 env = XCURSOR_SIZE,24
 
 input {
-    kb_layout = us
+    kb_layout = us,es
+    kb_options = grp:caps_toggle
     repeat_rate = 30
     repeat_delay = 500
     sensitivity = 0
@@ -71,22 +72,6 @@ general {
 
 decoration {
     rounding = 8
-
-    blur = yes
-    blur_size = 5
-    blur_passes = 4
-    blur_new_optimizations = on
-    blur_ignore_opacity = false
-    blur_xray = false
-
-    drop_shadow = yes
-    shadow_range = 4
-    shadow_render_power = 4
-    col.shadow = rgba({{.hex.slate_600}}aa)
-
-    dim_inactive = false
-    dim_strength = 0.1
-    dim_special = 0
 }
 
 animations {

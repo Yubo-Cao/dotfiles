@@ -1,0 +1,19 @@
+(deflisten current_workspace :initial "2" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
+
+(defwidget workspace_button [name active]
+  (button :class { active ? "icon-button active" : "icon-button"}
+          :width 40
+          :height 40
+          :onclick `hyprctl dispatch "workspace ${name}"`
+          :tooltip name
+          (icon :icon { active ? "workspace-active.svg" : "workspace.svg"} 
+                :size 20)))
+
+(defwidget workspaces [current_workspace]
+(box
+ :class "surface"
+ :spacing 0
+ 
+ (for entry in workspaces
+   (workspace_button :name entry :active "${entry == current_workspace}"))))

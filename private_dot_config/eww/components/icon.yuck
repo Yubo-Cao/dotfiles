@@ -1,0 +1,9 @@
+(defwidget icon [icon size ?intrinsic_size ?intrinsic_width ?intrinsic_height]
+    (image
+      :width size
+      :height size
+      :image-width { intrinsic_width == "" ? intrinsic_size == "" ? size : intrinsic_size : intrinsic_width}
+      :image-height { intrinsic_height == "" ? intrinsic_size == "" ? size : intrinsic_size : intrinsic_height}
+      :halign "center"
+      :valign "center"
+      :path "./icons/${icon}"))

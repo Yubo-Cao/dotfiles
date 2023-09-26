@@ -27,8 +27,6 @@ bind = $mod, Return, exec, {{.terminal}}
 bind = $mod, w, exec, {{.browser}}
 bind = $mod, c, exec, {{.gui_editor}}
 bind = $mod, v, exec, {{.file_manager}}
-# Screenshot
-bind = , F1, exec, grim -g "$(slurp)" - | swappy -f - - | wl-copy
 
 # Close window
 bind = $mod SHIFT, Q, killactive, 
@@ -95,3 +93,7 @@ bind = $mod SHIFT, $right, movewindow, r
 bind = $mod SHIFT, $left, movewindow, l
 bind = $mod SHIFT, $up, movewindow, u
 bind = $mod SHIFT, $down, movewindow, d
+
+# Screenshot
+bindl = ,Print,exec,grim -g "$(slurp)" - | swappy -f - -o - | wl-copy
+bind = , F1, exec, grim -g "$(slurp)" - | swappy -f - -o - | wl-copy

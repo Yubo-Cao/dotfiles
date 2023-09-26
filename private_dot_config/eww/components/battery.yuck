@@ -1,0 +1,14 @@
+(defwidget battery_indicator []
+    (box
+      :width 24
+      :height 24
+      :tooltip "${EWW_BATTERY.BAT0.status} ${EWW_BATTERY.BAT0.capacity}%"
+      (label :class "battery-indicator" :text "${
+        EWW_BATTERY.BAT0.status == 'Charging' ? '' : ''
+      } ${
+        EWW_BATTERY.total_avg < 25 ? '' :
+        EWW_BATTERY.total_avg < 50 ? '' :
+        EWW_BATTERY.total_avg < 75 ? '' :
+        EWW_BATTERY.total_avg < 100 ? '' :
+        ''
+      }")))

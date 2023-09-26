@@ -1,0 +1,59 @@
+
+(defwidget volume_slider [volume muted icon ?onclick ?onchange]
+  (box
+    :class "volume-slider"
+    :orientation "h"
+    :spacing 12
+    :space-evenly false
+    
+    (button
+      :class "icon-button"
+      :width 48
+      :height 48
+      :onclick onclick
+      (icon
+        :icon icon
+        :size 24
+      :intrinsic-size 24))
+    
+    (box
+      :class "surface"
+      :orientation "v"
+      :spacing 8
+      :space-evenly false
+      :hexpand true
+      
+      (label :text "Speaker Volume" :halign "start")
+      (scale
+        :class "slider"
+        :height 8
+        :min 0
+        :max 100
+        :round-digits 0
+        :hexpand true
+        :value volume
+      :onchange onchange))))
+
+
+(deflisten speaker_volume :initial "0" "bash ~/.config/eww/scripts/get-speaker-volume.sh")
+(deflisten speaker_muted :initial "false" "bash ~/.config/eww/scripts/get-speaker-muted.sh")
+(defwidget speaker_volume_slider []
+  (volume_slider
+    :volume speaker_volume
+    :muted speaker_muted
+    :icon {speaker_muted || speaker_volume == 0 ? "volume/mute.svg" :
+    speaker_volume < 50 ? "volume/low.svg" : "volume/high.svg"}
+    :onclick `pamixer --toggle-mute`
+  :onchange `pamixer --set-volume {}`))
+
+(deflisten microphone_volume :initial "0" "bash ~/.config/eww/scripts/get-microphone-volume.sh")
+(deflisten microphone_muted :initial "false" "bash ~/.config/eww/scripts/get-microphone-muted.sh")
+(defwidget microphone_volume_slider []
+  (volume_slider
+    :volume microphone_volume
+    :muted microphone_muted
+    :icon {microphone_muted || microphone_volume == 0 ? "mic/mute.svg" : "mic/normal.svg"}
+    :onclick `pamixer --default-source --toggle-mute`
+  :onchange `pamixer --default-source --set-volume {}`))
+
+

@@ -1,4 +1,5 @@
-#!/usr/bin/bash source "$CHEZMOI_SOURCE_DIR/common.sh"
+#!/usr/bin/bash
+source "$CHEZMOI_SOURCE_DIR/common.sh"
 
 info "Setting up i3"
 
@@ -22,19 +23,24 @@ install i3 \
     i3lock-color-git xss-lock \
     xorg-xinit
 
+install "i3 script dependencies" \
+    python-pyudev python-i3ipc python-rich python-tomlkit python-xlib
+
 install "i3 utilies" \
-    xdg-utils gnome-keyring \
+    xdg-utils \
     xorg-xhost \
-    polkit-kde-agent
+    xorg-xinput \
+    xorg-server \
+    xorg-xrandr \
+    gnome-keyring \
+    polkit-kde-agent \
     xdg-desktop-portal xdg-desktop-portal-kde \
     xclip xsel xrandr \
     dunst \
-    xorg-xinput \
     rofi libqalculate rofi-calc
 
 install "basic software" \
     gwenview \
     thunar \
-    microsoft-edge-dev-bin \
     discord \
     gimp

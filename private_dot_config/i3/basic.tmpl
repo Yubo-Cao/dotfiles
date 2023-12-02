@@ -2,14 +2,14 @@
 
 ## CSS
 # font
-font pango:Inter 8
+font pango:Roboto 11
 # color for windows decoration: border background text indicator child_border
-client.focused   {{.web.primary_600}} {{.web.background_primary}} {{.web.text_primary}} {{.web.primary_main}} {{.web.primary_300}}
+client.focused   {{.web.primary_600}} {{.web.primary_600}} {{.web.text_primary}} {{.web.primary_main}} {{.web.primary_300}}
 client.unfocused {{.web.dark_300}} {{.web.background_dark}} {{.web.text_dark}} {{.web.dark_main}} {{.web.dark_400}}
 client.urgent    {{.web.red_main}} {{.web.red_50}} {{.web.red_600}} {{.web.red_800}} {{.web.red_400}}
 # border
 # border_radius 8
-for_window [class=".*"] border pixel 0
+for_window [class=".*"] border pixel 2
 
 gaps outer 0
 gaps inner 8

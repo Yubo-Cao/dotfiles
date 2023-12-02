@@ -41,6 +41,8 @@ install "i3 utilies" \
 
 install "basic software" \
     gwenview \
-    thunar \
     discord \
-    gimp
+    gimp \
+    nautius \
+    mercury-browser-bin \
+    visual-studio-code-bin
